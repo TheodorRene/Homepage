@@ -1,6 +1,27 @@
 import React, { Component } from 'react';
 import './App.css';
 
+class Backend extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { apiResponse: "" };
+  }
+
+  callAPI() {
+    fetch("http://localhost:9000/testAPI")
+      .then(res => res.text())
+      .then(res => this.setState({ apiResponse: res }));
+  }
+
+  componentWillMount() {
+    this.callAPI();
+  }
+  render(){
+    return(
+      <p>{this.state.apiResponse}</p>
+    )
+  }
+}
 class App extends Component {
   constructor(props) {
     super(props)
@@ -32,11 +53,12 @@ class App extends Component {
         <header className="App-header">
           <h1>Sesam vs Pizzabakeren</h1>
         </header>
-        <div class="main">
+        <div className="main">
           <Scoreboard pb={this.state.score_pb} sesam={this.state.score_sesam} />
           <Button team="pb" verbose="Pizzabakeren" handleChange={this.handleVoteChange} />
           <Button team="sesam" verbose="Sesam" handleChange={this.handleVoteChange} />
           <Button team="NULL" verbose="Reset" handleChange={this.handleReset} />
+          <Backend />
         </div>
       </div>
     );
