@@ -5,7 +5,8 @@ import App from './App';
 import Scoreboard from './comp';
 import Navbar from './base';
 import Home from './home';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import CurriculumBooks from './books'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -14,7 +15,7 @@ ReactDOM.render(
         <Switch>
             <Route exact path='/' component={Home} />
               <Route exact path='/voting' component={App} />
-              <Route path='/edit/:id' component={Scoreboard} />
+              <Route path='/edit/' component={CurriculumBooks} />
               <Route path='/index' component={Scoreboard} />
           </Switch>
           {//footer

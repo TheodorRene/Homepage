@@ -1,18 +1,49 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import theo from './theodorCv.jpg';
+class Info extends Component{
+    render(){
+        return (
+            <div>
+                <h1 class="center-align"> /home/theodorc </h1>
+                <p class="flow-text">
+                    Studying computer science at NTNU, full
+                    stack engineer, and Chief of server operations at the Student
+                    Society in Trondheim, Norway. A passion for free software,
+                        disco, vim and chess.
+            </p>
+            </div>
+        )
+    }
+}
+//https://api.github.com/users/theodorrene/repos
+// curl ^ get names of repos
+//curl https://raw.githubusercontent.com/TheodorRene/DailyPuzzles/master/makeDB.py to download readme
+const git_daily = "https://github.com/TheodorRene/DailyPuzzles"
+const git_spotify = "https://github.com/TheodorRene/SpotifyPlaylistPic"
 
 class Home extends Component {
     render(){
         return(
-            <div class="Flexbox">
-            <h1> This is your homepage </h1>
-            <div class="row">
-            <Project title="Internship Vy" text="Jeg kjørte tog" img={logo}/>
-            <Project title="Internship Vy" text="Jeg kjørte tog" img={logo}/>
-            <Project title="Internship Vy" text="Jeg kjørte tog" img={logo}/>
-            <Project title="Internship Vy" text="Jeg kjørte tog" img={logo}/>
-            <Project title="Internship Vy" text="Jeg kjørte tog" img={logo}/>
-            </div>
+            <div class="container">
+                <Info />
+                <div class="col s12 m10 offset-m1">
+                    <div class="row">
+                        <Project title="Summer internship at Tripletex" text="Developed mobile application in React Native" img={theo} />
+                        <Project title="Pleieassistent at " text="Took care of elderly" img={theo} />
+                        <Project title="Internship Vy" text="Jeg kjørte tog" img={logo} />
+                        <Project title="Internship Vy" text="Jeg kjørte tog" img={logo} />
+                        <Project title="Internship Vy" text="Jeg kjørte tog" img={logo} />
+                    </div>
+                </div>
+                <h1 class="center-align"> /home/theodorc/projects</h1>
+                <div class="col s12 m10 offset-m1">
+                    <div class="row">
+                        <Project title="DailyChess" text="Twitterbot posting chess puzzles every day" img={logo} link={git_daily}/>
+                        <Project title="This page" text="Page written in React" img={logo} />
+                        <Project title="Playlist illustrations" text="Small bash script that generates Spotify-like playlist images" img={logo} link={git_spotify} />
+                    </div>
+                </div>
             </div>
         )
     }
@@ -28,15 +59,19 @@ class Profile extends Component{
 class Project extends Component {
     render(){
         return(
-            <div class="col col-md-6">
-                <div class="card">
-                    <h3 class="card-title">{this.props.title}</h3>
-                    <p>{this.props.text}</p>
-                    <img src={this.props.img} alt="logo" width="500" height="500"/>
-        <ul class="card-actions">
-                        <li><button class="button-primary">Action 1</button></li>
-                        <li><button class="button-primary">Action 2</button></li>
-                    </ul>
+            <div class="col s12 m4">
+                <div class="card medium">
+                    <div class="card-image">
+                        <img src={this.props.img} alt="logo" />
+                        <span class="card-title">{this.props.title}</span>
+                        <div></div>
+                    </div>
+                    <div class="card-content">
+                        <p>{this.props.text}</p>
+                    </div>
+                    <div class="card-action">
+                        <a href={this.props.link}>Githublink</a>
+                    </div>
                 </div>
             </div>
         )

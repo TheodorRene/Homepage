@@ -42,17 +42,22 @@ class Button extends Component {
 
     render() {
         return (
-            <button class="button-primary button-round" onClick={() => this.vote(this.props.team)}>{this.props.verbose}</button>
+            <button class="waves-effect waves-light btn" onClick={() => this.vote(this.props.team)}>{this.props.verbose}</button>
         );
     }
 }
 
+    const txtStyle = {
+        color:"black",
+    }
+
 class Scoreboard extends Component {
+
     render() {
         return (
             <div>
-                <h1>Pizzabakeren har {this.props.pb} </h1>
-                <h1>Sesam har {this.props.sesam} </h1>
+                <h1 style={txtStyle}>Pizzabakeren har {this.props.pb} </h1>
+                <h1 style={txtStyle}>Sesam har {this.props.sesam} </h1>
             </div>
         );
     };
