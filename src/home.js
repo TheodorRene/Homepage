@@ -48,13 +48,6 @@ class Home extends Component {
         )
     }
 }
-class Profile extends Component{
-    render(){
-        return(
-            <h1>h</h1>
-        )
-    }
-}
 
 class Project extends Component {
     render(){
