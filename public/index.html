@@ -15,6 +15,7 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
         <!-- Fonts and CSS Reset -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono" rel="stylesheet"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
 
     <!-- PrismJS: Syntax Highlighting -->
@@ -43,9 +44,16 @@
     -->
     <title>React App</title>
   </head>
+  <style>
+  .main{
+    background-image: url("./free.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+  </style>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root" class=main></div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

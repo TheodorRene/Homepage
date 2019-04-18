@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Voting from './comp';
 
+//Backend test
 class Backend extends Component {
   constructor(props) {
     super(props);
@@ -23,17 +24,17 @@ class Backend extends Component {
     )
   }
 }
+//Sesam vs pizzabakere
 class App extends Component {
-
   render() {
     return (
-    <div className="App">
+      <div className="App">
         <header className="App-header">
           <h1>Sesam vs Pizzabakeren</h1>
-        <div className="main">
-          <Voting />
-          <Backend />
-        </div>
+          <div className="main">
+            <Voting />
+            <Backend />
+          </div>
         </header>
       </div>
     );
