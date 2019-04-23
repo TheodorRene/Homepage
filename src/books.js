@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 
 const books = {
   books: [
@@ -45,18 +45,16 @@ class CurriculumBooks extends Component {
   }
   //Add book
   handleNewBook = (book) => {
-    this.setState(() => {
-      return {
-        list: this.state.list.push(book)
-      };
-    });
+    this.setState({
+      list: [...this.state.books, book]
+    })
   };
 
   render() {
     return (
       <div>
         <h1 class="white-text"> CurriculumBooks </h1>
-        <NewBook />
+        <NewBook newBook={this.handleNewBook}/>
         <AllBooks books={this.state.list} newbook={this.handleNewBook} />
       </div>
     );
@@ -108,47 +106,69 @@ class AllBooks extends Component {
 }
 
 //Supposed to be a function that returns button
-class NewBook extends Component {
-  constructor(props){
-    super(props)
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
+function NewBook(props) {
+  const [title,setTitle] = useState("")
+  const [author,setAuthor] = useState("")
+  const [year, setYear] = useState("")
+  const [price,setPrice] = useState("")
 
-  handleSubmit = () => console.log("hello")
-  render() {
-    return (
-      <div style={main_child}>
-        <form class="s12" onSubmit={this.handleSubmit}>
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="title" type="text" class="validate" />
-              <label for="title">Title</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="author" type="text" class="validate" />
-              <label for="author">Author</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="year" type="text" class="validate" />
-              <label for="year">Author</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="price" type="text" class="validate" />
-              <label for="price">Price</label>
-            </div>
-          </div>
+  const newBook = book => {
+    props.newBook(book);
+  };
 
-          <button type="submit" class="waves-effect waves-light btn">Add new book</button>
-        </form>
-      </div>
-    );
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    newBook({
+      title: title,
+      author: author,
+      year: year,
+      buy_price: price
+    },)
   }
+  const handleInputChange = (e) => {
+    const id = e.target.id;
+    const value = e.target.value;
+    switch(id){
+      case "title": setTitle(value); break;
+      case "author": setAuthor(value); break;
+      case "year": setYear(value); break;
+      case "price": setPrice(value); break;
+
+      // no default
+    }
+  }
+  return (
+    <div style={main_child}>
+      <form class="s12" onSubmit={handleSubmit}>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="title" type="text" value={title} onChange={handleInputChange} />
+            <label for="title">Title</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="author" type="text" value={author} onChange={handleInputChange}/>
+            <label for="author">Author</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="year" type="text" value={year} onChange={handleInputChange}/>
+            <label for="year">Year</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="price" type="text" value={price} onChange={handleInputChange}/>
+            <label for="price">Price</label>
+          </div>
+        </div>
+
+        <button type="submit" class="waves-effect waves-light btn">Add new book</button>
+      </form>
+    </div>
+  );
 }
 
 export default CurriculumBooks;

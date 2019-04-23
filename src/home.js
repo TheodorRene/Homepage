@@ -41,19 +41,7 @@ const main = {
     backgroundPosition: "center"
 }
 
-const main_child = {
-    //backgroundImage: `url(${water})`,
-    background: "rgba(192, 192, 192, 0.3)",
-    filter: "blur(0px)",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "contain",
-    backgroundPosition: "center",
-    position: "absolute",
-    top: "0",
-    left: "0",
-    width: "100%",
-    height: "100%"
-}
+
 class Home extends Component {
     render() {
         return (
