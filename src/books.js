@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 
-const books = {
+const const_books = {
   books: [
     {
       title: "Introduction to algorithms",
@@ -39,15 +39,17 @@ class CurriculumBooks extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: books
+      state_books: const_books
     };
     this.handleNewBook = this.handleNewBook.bind(this);
   }
   //Add book
   handleNewBook = (book) => {
-    this.setState({
-      list: [...this.state.books, book]
-    })
+    this.setState(prevState => ({
+      state_books: [...this.state.state_books.books, book]
+    }))
+    console.log(this.state.state_books.books)
+    console.log(book)
   };
 
   render() {
@@ -55,7 +57,7 @@ class CurriculumBooks extends Component {
       <div>
         <h1 class="white-text"> CurriculumBooks </h1>
         <NewBook newBook={this.handleNewBook}/>
-        <AllBooks books={this.state.list} newbook={this.handleNewBook} />
+        <AllBooks books={this.state.state_books} newbook={this.handleNewBook} />
       </div>
     );
   }
@@ -71,10 +73,12 @@ class AllBooks extends Component {
     this.props.newbook(book);
   };
 
-  listOfBooks = books => {
-    return books.books.map(book => {
+  listOfBooks = () => {
+    console.log(this.props.books.books)
+    //return Object.values(this.props.books).map(book => {
+    return this.props.books.books.map(book => {
       return (
-        <div class="col s12 m7">
+        <div key={book.toString()} class="col s12 m7">
           <h2 class="header white-text">{book.title}</h2>
           <div class="card horizontal">
             <div class="card-image">
@@ -100,7 +104,7 @@ class AllBooks extends Component {
 
   render() {
     return (
-      this.listOfBooks(this.props.books)
+      this.listOfBooks()
     );
   }
 }
@@ -143,25 +147,25 @@ function NewBook(props) {
         <div class="row">
           <div class="input-field col s12">
             <input id="title" type="text" value={title} onChange={handleInputChange} />
-            <label for="title">Title</label>
+            <label htmlFor="title">Title</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
             <input id="author" type="text" value={author} onChange={handleInputChange}/>
-            <label for="author">Author</label>
+            <label htmlFor="author">Author</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
             <input id="year" type="text" value={year} onChange={handleInputChange}/>
-            <label for="year">Year</label>
+            <label htmlFor="year">Year</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
             <input id="price" type="text" value={price} onChange={handleInputChange}/>
-            <label for="price">Price</label>
+            <label htmlFor="price">Price</label>
           </div>
         </div>
 
