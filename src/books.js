@@ -1,6 +1,17 @@
 import React, { Component, useState } from "react";
 
-const const_books = {
+const main_child = {
+//  display: "flex",
+ // alignItems: "flex-start",
+  background: "rgba(255, 255, 255)",
+}
+
+const main = {
+
+}
+
+
+const curr_books = {
   books: [
     {
       title: "Introduction to algorithms",
@@ -24,40 +35,28 @@ const const_books = {
   ]
 }
 
-const main_child = {
-    //backgroundImage: `url(${water})`,
-    background: "rgba(255, 255, 255)",
-    filter: "blur(0px)",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "contain",
-    backgroundPosition: "center",
-    position: "relative",
-}
-
 //Main class
 class CurriculumBooks extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      state_books: const_books
+      books: curr_books.books
     };
     this.handleNewBook = this.handleNewBook.bind(this);
   }
   //Add book
   handleNewBook = (book) => {
     this.setState(prevState => ({
-      state_books: [...this.state.state_books.books, book]
+      books: [...this.state.books, book]
     }))
-    console.log(this.state.state_books.books)
-    console.log(book)
   };
 
   render() {
     return (
-      <div>
-        <h1 class="white-text"> CurriculumBooks </h1>
+      <div style={main}>
+        <h1 class="white-text" > CurriculumBooks </h1>
         <NewBook newBook={this.handleNewBook}/>
-        <AllBooks books={this.state.state_books} newbook={this.handleNewBook} />
+        <AllBooks books={this.state.books} newbook={this.handleNewBook} />
       </div>
     );
   }
@@ -74,11 +73,11 @@ class AllBooks extends Component {
   };
 
   listOfBooks = () => {
-    console.log(this.props.books.books)
+    console.log(this.props.books)
     //return Object.values(this.props.books).map(book => {
-    return this.props.books.books.map(book => {
+    return this.props.books.map(book => {
       return (
-        <div key={book.toString()} class="col s12 m7">
+        <div key={book.title} class="col s12 m7">
           <h2 class="header white-text">{book.title}</h2>
           <div class="card horizontal">
             <div class="card-image">
@@ -122,12 +121,12 @@ function NewBook(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    newBook({
-      title: title,
-      author: author,
-      year: year,
-      buy_price: price
-    },)
+    newBook(JSON.parse(`{
+      "title": "${title}",
+      "author": "${author}",
+      "year": "${year}",
+      "buy_price": "${price}"
+    }`))
   }
   const handleInputChange = (e) => {
     const id = e.target.id;
