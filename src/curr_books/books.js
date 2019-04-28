@@ -14,14 +14,16 @@ const curr_books = {
     {
       title: "Introduction to algorithms",
       author: "Lars saabye christensen",
-      year: 1997,
-      buy_price: 199
+      year: "1997",
+      buy_price: "199",
+      sell_price: "-1",
     },
     {
       title: "Matte 1",
       author: "God",
-      year: 0,
-      buy_price: 500
+      year: "0",
+      buy_price: "500",
+      sell_price: "-1",
     },
 
   ]
@@ -36,6 +38,7 @@ class CurriculumBooks extends Component {
       className: "main_books"
     };
     this.handleNewBook = this.handleNewBook.bind(this);
+    this.setSold = this.setSold.bind(this);
   }
   //Add book
   handleNewBook = (book) => {
@@ -44,12 +47,18 @@ class CurriculumBooks extends Component {
     }))
   };
 
+    setSold = (book) => {
+        let newState = Object.assign({}, this.state);
+        newState.books[0].sell_price="599"
+        this.setState(newState)
+    }
+
   render() {
     return (
         <div className="super_main_books">
             <h1 class="white-text center-align" > <i class="fas fa-book"></i> CurriculumBooks </h1>
             <div className={this.state.className}>
-                <AllBooks books={this.state.books} newbook={this.handleNewBook} />
+                <AllBooks books={this.state.books} newbook={this.handleNewBook} setSold={this.setSold} />
                 <NewBook newBook={this.handleNewBook}/>
             </div>
       </div>
@@ -62,6 +71,8 @@ class AllBooks extends Component {
   constructor(props) {
     super(props);
     this.listOfBooks = this.listOfBooks.bind(this);
+    this.ToggleNewBookPrice = this.ToggleNewBookPrice.bind(this);
+    this.isSold = this.isSold.bind(this)
       this.state = {
           className: "leftside",
           hiddenNewBookPrice: true,
@@ -72,9 +83,16 @@ class AllBooks extends Component {
     this.props.newbook(book);
   };
 
+  ToggleNewBookPrice = () =>{
+      this.setState({
+          hiddenNewBookPrice: !this.state.hiddenNewBookPrice,
+      })
+  }
+
+  isSold = (book) => book.sell_price!=="-1"
+
   listOfBooks = () => {
     console.log(this.props.books)
-    //return Object.values(this.props.books).map(book => {
     return this.props.books.map(book => {
       return (
         <div key={book.title} class="col s12 m7">
@@ -92,11 +110,12 @@ class AllBooks extends Component {
                 <p>Price: {book.buy_price}</p>
               </div>
               <div class="card-action">
-                <a href="/">This is a link</a>
+                  <button type="button" class="waves-effect waves-light btn" onClick={this.ToggleNewBookPrice}>Mark as sold</button> 
               </div>
             </div>
-          </div>
-          <NewBookPrice book={book} hidden={this.state.hiddenNewBookPrice}/>
+            {this.isSold(book) &&  <span class="new badge blue"data-badge-caption="Sold"></span> }
+        </div>
+          <NewBookPrice book={book} hidden={this.state.hiddenNewBookPrice} setSold={this.props.setSold} />
         </div>
       );
     });
@@ -113,27 +132,36 @@ class AllBooks extends Component {
 
 function NewBookPrice(props){
 
+  const [price,setPrice] = useState("")
 
     const handleSubmit = (e) => {
-        console.log("Hei")
         e.preventDefault()
+        props.setSold(props.book)
     }
 
-    const handleInputChange = () => console.log("Hei2")
+    const handleInputChange = (e) => {
+        setPrice(e.target.value)
+    }
 
-    return( this.props.hidden
-      <div className="new-book-price">
-      <form class="s12" onSubmit={handleSubmit}>
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="title" type="text" onChange={handleInputChange} />
-            <label htmlFor="title">Title</label>
-          </div>
-        <button type="submit" class="waves-effect waves-light btn">Add new book</button>
+    if (!props.hidden){
+    return( 
+        <div className="new-book-price">
+            <form class="s12" onSubmit={handleSubmit}>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="newPrice" type="text" onChange={handleInputChange} />
+                        <label htmlFor="newPrice">Title</label>
+                    </div>
+                    <div class="card-action">
+                        <button type="submit" class="waves-effect waves-light btn">Add new book</button>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
-    </div>
     )
+    } else {
+        return null
+    }
 }
 
 
@@ -157,6 +185,7 @@ function NewBook(props) {
       "author": "${author}",
       "year": "${year}",
       "buy_price": "${price}"
+      "sell_price": "0"
     }`))
   }
   const handleInputChange = (e) => {
