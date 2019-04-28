@@ -83,6 +83,7 @@ class AllBooks extends Component {
     this.props.newbook(book);
   };
 
+  // Currently toggles newbookprice for every card
   ToggleNewBookPrice = () =>{
       this.setState({
           hiddenNewBookPrice: !this.state.hiddenNewBookPrice,
@@ -184,8 +185,8 @@ function NewBook(props) {
       "title": "${title}",
       "author": "${author}",
       "year": "${year}",
-      "buy_price": "${price}"
-      "sell_price": "0"
+      "buy_price": "${price}",
+      "sell_price": "-1"
     }`))
   }
   const handleInputChange = (e) => {
