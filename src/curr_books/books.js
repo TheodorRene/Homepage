@@ -48,7 +48,7 @@ class CurriculumBooks extends Component {
     setSold = (book,price) => {
         let newState = Object.assign({}, this.state);
 
-        console.log(newState.books)
+        // const array = newState.books.map(book1 => book1.title).filter(title => title===book.title)[0]
         for(var i = 0; i < newState.books.length; i++) {
             var obj = newState.books[i];
             if (obj.title===book.title){
