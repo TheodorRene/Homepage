@@ -45,15 +45,27 @@
     <title>React App</title>
   </head>
   <style>
-  .main{
-    background-image: url("./free.jpg");
-    background-size: cover;
-    background-position: center;
+  .main-backup{
+      background-image: url("./free.jpg");
+      background-size: cover;
+      background-position: center;
+  }
+  html {
+      /* To make use of full height of page*/
+      min-height: 100%;
+      margin: 0;
+  }
+  body {
+      min-height: 100%;
+      margin: 0;
+      background-color: #8EC5FC;
+      background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+      background-size: cover;
   }
   </style>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root" class=main></div>
+    <div id="root"></div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

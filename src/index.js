@@ -5,7 +5,7 @@ import App from "./App";
 import Scoreboard from "./comp";
 import Navbar from "./base";
 import Home from "./home";
-import CurriculumBooks from "./books";
+import CurriculumBooks from "./curr_books/books";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 

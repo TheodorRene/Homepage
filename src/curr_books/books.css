@@ -1,0 +1,39 @@
+.leftside{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: column;
+   /*
+    border: 1px solid black;
+    outline-style: solid;
+    outline-color: red;    
+    flex-grow:0;
+    */
+}
+
+.rightside{
+   /*
+    border: 1px solid black;
+    outline-style: solid;
+    outline-color: green;    
+    */
+    align-self: flex-start;
+}
+
+.main_books{
+    display:flex;
+    justify-content: space-around;
+}
+
+.super_main_books{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.new-book-price{
+    border: 1px solid black;
+    outline-style: solid;
+    outline-color: green;    
+    background-image: linear-gradient(62deg, #0EC5FC 0%, #E003FC 100%);
+}

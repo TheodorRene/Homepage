@@ -1,4 +1,5 @@
 import React, { Component, useState } from "react";
+import "./books.css"
 
 const main_child = {
 //  display: "flex",
@@ -6,9 +7,6 @@ const main_child = {
   background: "rgba(255, 255, 255)",
 }
 
-const main = {
-
-}
 
 
 const curr_books = {
@@ -25,12 +23,6 @@ const curr_books = {
       year: 0,
       buy_price: 500
     },
-    {
-      title: "Fysikk 2",
-      author: "God",
-      year: 0,
-      buy_price: 100
-    },
 
   ]
 }
@@ -40,7 +32,8 @@ class CurriculumBooks extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: curr_books.books
+      books: curr_books.books,
+      className: "main_books"
     };
     this.handleNewBook = this.handleNewBook.bind(this);
   }
@@ -53,10 +46,12 @@ class CurriculumBooks extends Component {
 
   render() {
     return (
-      <div style={main}>
-        <h1 class="white-text" > CurriculumBooks </h1>
-        <NewBook newBook={this.handleNewBook}/>
-        <AllBooks books={this.state.books} newbook={this.handleNewBook} />
+        <div className="super_main_books">
+            <h1 class="white-text center-align" > <i class="fas fa-book"></i> CurriculumBooks </h1>
+            <div className={this.state.className}>
+                <AllBooks books={this.state.books} newbook={this.handleNewBook} />
+                <NewBook newBook={this.handleNewBook}/>
+            </div>
       </div>
     );
   }
@@ -67,7 +62,12 @@ class AllBooks extends Component {
   constructor(props) {
     super(props);
     this.listOfBooks = this.listOfBooks.bind(this);
+      this.state = {
+          className: "leftside",
+          hiddenNewBookPrice: true,
+      }
   }
+
   newbook = book => {
     this.props.newbook(book);
   };
@@ -96,17 +96,47 @@ class AllBooks extends Component {
               </div>
             </div>
           </div>
+          <NewBookPrice book={book} hidden={this.state.hiddenNewBookPrice}/>
         </div>
       );
     });
-  };
+    };
 
-  render() {
+  render(){
     return (
-      this.listOfBooks()
+        <div className={this.state.className}>
+           {this.listOfBooks()}
+        </div>
     );
-  }
+  };
 }
+
+function NewBookPrice(props){
+
+
+    const handleSubmit = (e) => {
+        console.log("Hei")
+        e.preventDefault()
+    }
+
+    const handleInputChange = () => console.log("Hei2")
+
+    return( this.props.hidden
+      <div className="new-book-price">
+      <form class="s12" onSubmit={handleSubmit}>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="title" type="text" onChange={handleInputChange} />
+            <label htmlFor="title">Title</label>
+          </div>
+        <button type="submit" class="waves-effect waves-light btn">Add new book</button>
+        </div>
+    </form>
+    </div>
+    )
+}
+
+
 
 //Supposed to be a function that returns button
 function NewBook(props) {
@@ -114,6 +144,7 @@ function NewBook(props) {
   const [author,setAuthor] = useState("")
   const [year, setYear] = useState("")
   const [price,setPrice] = useState("")
+  const [className,setClassName] = useState("rightside")
 
   const newBook = book => {
     props.newBook(book);
@@ -141,7 +172,7 @@ function NewBook(props) {
     }
   }
   return (
-    <div style={main_child}>
+    <div className={className} style={main_child}>
       <form class="s12" onSubmit={handleSubmit}>
         <div class="row">
           <div class="input-field col s12">
