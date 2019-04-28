@@ -7,8 +7,6 @@ const main_child = {
   background: "rgba(255, 255, 255)",
 }
 
-
-
 const curr_books = {
   books: [
     {
@@ -47,10 +45,18 @@ class CurriculumBooks extends Component {
     }))
   };
 
-    setSold = (book) => {
+    setSold = (book,price) => {
         let newState = Object.assign({}, this.state);
-        newState.books[0].sell_price="599"
-        this.setState(newState)
+
+        console.log(newState.books)
+        for(var i = 0; i < newState.books.length; i++) {
+            var obj = newState.books[i];
+            if (obj.title===book.title){
+                newState.books[i].sell_price=price
+                this.setState(newState)
+                break;
+            }
+        }
     }
 
   render() {
@@ -93,7 +99,6 @@ class AllBooks extends Component {
   isSold = (book) => book.sell_price!=="-1"
 
   listOfBooks = () => {
-    console.log(this.props.books)
     return this.props.books.map(book => {
       return (
         <div key={book.title} class="col s12 m7">
@@ -109,15 +114,18 @@ class AllBooks extends Component {
               <div class="card-content">
                 <p>Author: {book.author}</p>
                 <p>Price: {book.buy_price}</p>
+                {this.isSold(book) && 
+                        <p> 
+                            Sell price: {book.sell_price} <br></br>
+                            Diff: {parseInt(book.buy_price) - parseInt(book.sell_price)}
+                        </p>
+                }
               </div>
-              <div class="card-action">
-                  <button type="button" class="waves-effect waves-light btn" onClick={this.ToggleNewBookPrice}>Mark as sold</button> 
-              </div>
-            </div>
-            {this.isSold(book) &&  <span class="new badge blue"data-badge-caption="Sold"></span> }
-        </div>
-          <NewBookPrice book={book} hidden={this.state.hiddenNewBookPrice} setSold={this.props.setSold} />
-        </div>
+                <NewBookPrice book={book} hidden={this.state.hiddenNewBookPrice} setSold={this.props.setSold} />
+          </div>
+          {this.isSold(book) &&  <span class="new badge blue"data-badge-caption="Sold"></span> }
+      </div>
+  </div>
       );
     });
     };
@@ -131,43 +139,57 @@ class AllBooks extends Component {
   };
 }
 
+// Button for setting sold price
 function NewBookPrice(props){
 
   const [price,setPrice] = useState("")
+  const [hidden,setHidden] = useState(true)
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        props.setSold(props.book)
+        props.setSold(props.book,price)
+        ToggleNewBookPrice()
+        setPrice("")
     }
 
     const handleInputChange = (e) => {
         setPrice(e.target.value)
     }
+    const ToggleNewBookPrice = () =>{
+        setHidden(!hidden)
+    }
 
-    if (!props.hidden){
+    if (!hidden){
     return( 
         <div className="new-book-price">
             <form class="s12" onSubmit={handleSubmit}>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="newPrice" type="text" onChange={handleInputChange} />
-                        <label htmlFor="newPrice">Title</label>
+                        <input id="newPrice" type="text" value={price} onChange={handleInputChange} />
+                        <label htmlFor="newPrice">{props.book.title}</label>
                     </div>
-                    <div class="card-action">
-                        <button type="submit" class="waves-effect waves-light btn">Add new book</button>
+                    <div >
+                        <button type="submit" class="waves-effect waves-light btn">Add sell price</button>
+                    </div>
+                    <div>
+                        <button type="button" class="waves-effect waves-light btn" onClick={ToggleNewBookPrice}>Mark as sold</button> 
                     </div>
                 </div>
             </form>
         </div>
     )
     } else {
-        return null
+        return(
+        <div class="card-action">
+            <button type="button" class="waves-effect waves-light btn" onClick={ToggleNewBookPrice}>Mark as sold</button> 
+        </div>
+        )
     }
 }
 
 
 
-//Supposed to be a function that returns button
+//Form for adding new book
 function NewBook(props) {
   const [title,setTitle] = useState("")
   const [author,setAuthor] = useState("")
@@ -188,6 +210,10 @@ function NewBook(props) {
       "buy_price": "${price}",
       "sell_price": "-1"
     }`))
+    setTitle("")
+    setAuthor("")
+    setYear("")
+    setPrice("")
   }
   const handleInputChange = (e) => {
     const id = e.target.id;
