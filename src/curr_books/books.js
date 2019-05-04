@@ -26,6 +26,7 @@ const curr_books = {
 
   ]
 }
+// This is a comment
 
 //Main class
 class CurriculumBooks extends Component {

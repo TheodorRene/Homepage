@@ -2,12 +2,14 @@ const express = require('express')
 const app = express()
 const port = 8000
 const sqlite3 = require('sqlite3').verbose()
+const cors = require('cors')
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.use(cors)
+app.get('/test', (req, res) => retrieveDB(req,res))
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
-router.get("/", function (req, res, next) {
+function retrieveDB(req, res) {
     let db = new sqlite3.Database('./test.db',sqlite3.OPEN_READWRITE, (err) => {
         if (err) {
             return console.error(err.message);
@@ -29,8 +31,8 @@ router.get("/", function (req, res, next) {
     db.close((err) => {
         if (err) {
             return console.error(err.message);
-            +        }
-            +        console.log('Close the database connection.');
-        +    });
-});
+        }
+        console.log('Close the database connection.');
+    });
+};
 
