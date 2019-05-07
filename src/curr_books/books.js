@@ -13,15 +13,15 @@ const curr_books = {
       title: "Introduction to algorithms",
       author: "Lars saabye christensen",
       year: "1997",
-      buy_price: "199",
-      sell_price: "-1",
+      buyprice: "199",
+      sellprice: "-1",
     },
     {
       title: "Matte 1",
       author: "God",
       year: "0",
-      buy_price: "500",
-      sell_price: "-1",
+      buyprice: "500",
+      sellprice: "-1",
     },
 
   ]
@@ -33,13 +33,19 @@ class CurriculumBooks extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: curr_books.books,
-      className: "main_books"
+      books: null,
+      className: "main_books",
     };
     this.handleNewBook = this.handleNewBook.bind(this);
     this.setSold = this.setSold.bind(this);
+
   }
-  //Add book
+    componentDidMount() {
+        fetch('http://localhost:8000/')
+            .then(response => response.json())
+            .then(books => this.setState({ books }));
+    }
+
   handleNewBook = (book) => {
     this.setState(prevState => ({
       books: [...this.state.books, book]
@@ -53,7 +59,7 @@ class CurriculumBooks extends Component {
         for(var i = 0; i < newState.books.length; i++) {
             var obj = newState.books[i];
             if (obj.title===book.title){
-                newState.books[i].sell_price=price
+                newState.books[i].sellprice=price
                 this.setState(newState)
                 break;
             }
@@ -65,7 +71,7 @@ class CurriculumBooks extends Component {
         <div className="super_main_books">
             <h1 class="white-text center-align" > <i class="fas fa-book"></i> CurriculumBooks </h1>
             <div className={this.state.className}>
-                <AllBooks books={this.state.books} newbook={this.handleNewBook} setSold={this.setSold} />
+                {this.state.books && <AllBooks books={this.state.books} newbook={this.handleNewBook} setSold={this.setSold} />}
                 <NewBook newBook={this.handleNewBook}/>
             </div>
       </div>
@@ -97,7 +103,7 @@ class AllBooks extends Component {
       })
   }
 
-  isSold = (book) => book.sell_price!=="-1"
+  isSold = (book) => book.sellprice!==-1
 
   listOfBooks = () => {
     return this.props.books.map(book => {
@@ -107,18 +113,18 @@ class AllBooks extends Component {
           <div class="card horizontal">
             <div class="card-image">
               <img
-                src="https://lorempixel.com/100/190/nature/6"
+                src="https://picsum.photos/200/300"
                 alt="picutre"
               />
             </div>
             <div class="card-stacked">
               <div class="card-content">
                 <p>Author: {book.author}</p>
-                <p>Price: {book.buy_price}</p>
+                <p>Price: {book.buyprice}</p>
                 {this.isSold(book) && 
                         <p> 
-                            Sell price: {book.sell_price} <br></br>
-                            Diff: {parseInt(book.buy_price) - parseInt(book.sell_price)}
+                            Sell price: {book.sellprice} <br></br>
+                            Diff: {parseInt(book.sellprice) - parseInt(book.buyprice)}
                         </p>
                 }
               </div>
@@ -208,8 +214,8 @@ function NewBook(props) {
       "title": "${title}",
       "author": "${author}",
       "year": "${year}",
-      "buy_price": "${price}",
-      "sell_price": "-1"
+      "buyprice": "${price}",
+      "sellprice": -1
     }`))
     setTitle("")
     setAuthor("")
