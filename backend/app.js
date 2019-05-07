@@ -1,38 +1,37 @@
 const express = require('express')
 const app = express()
 const port = 8000
-const sqlite3 = require('sqlite3').verbose()
+const bodyParser = require('body-parser')
+const Pool = require('pg').Pool
 const cors = require('cors')
 
-app.use(cors)
-app.get('/test', (req, res) => retrieveDB(req,res))
+
+app.use(bodyParser.json())
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+)
+
+const pool = new Pool({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'currbooks',
+  password: '123tre!!',
+  port: 5432,
+})
+
+app.get('/', (req, res) => getAllBooks(req,res))
+//app.get('/test', (req, res) => res.json({ info: 'Node.js, Express, and Postgres API' }))
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
-function retrieveDB(req, res) {
-    let db = new sqlite3.Database('./test.db',sqlite3.OPEN_READWRITE, (err) => {
-        if (err) {
-            return console.error(err.message);
+const getAllBooks = (req, res) => {
+    pool.query('SELECT * FROM books', (err,results) => {
+        if(err){
+            throw err
         }
-        console.log('Connected to the in-memory SQlite database.');
-    });
-    //res.send("Here you go, here is some database info");
-    const sql = `SELECT fen FROM puzzle WHERE id=${num}`;
-    num++;
-    db.get(sql, [], (err, row) => {
-        if (err) {
-            throw err;
-        }
-        console.log(row)
-        console.log(num)
-        res.send(row)
-    });
-
-    db.close((err) => {
-        if (err) {
-            return console.error(err.message);
-        }
-        console.log('Close the database connection.');
-    });
-};
+    res.status(200).json(results.rows)
+    })
+}
 
