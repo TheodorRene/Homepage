@@ -1,5 +1,7 @@
 import React, { Component, useState } from "react";
 import "./books.css"
+//Setting up a rest api with express and postgres
+//https://blog.logrocket.com/setting-up-a-restful-api-with-node-js-and-postgresql-d96d6fc892d8
 
 const main_child = {
 //  display: "flex",
@@ -121,6 +123,7 @@ class AllBooks extends Component {
               <div class="card-content">
                 <p>Author: {book.author}</p>
                 <p>Price: {book.buyprice}</p>
+                <p>Year: {book.year}</p>
                 {this.isSold(book) && 
                         <p> 
                             Sell price: {book.sellprice} <br></br>
@@ -222,6 +225,30 @@ function NewBook(props) {
     setYear("")
     setPrice("")
   }
+  const handleSubmitDatabase = (e) => {
+      e.preventDefault()
+      postData(`http://localhost:8000/newbook`, {
+          "title": title,
+          "author": author,
+          "year": year,
+          "buyprice": price,
+          "sellprice": -1
+      })
+  }
+
+    const postData = (url, json) => {
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(json),
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }
+        )
+    .then(res => console.log(res))
+        .catch(error => console.error('Error:', error));
+    }
+
   const handleInputChange = (e) => {
     const id = e.target.id;
     const value = e.target.value;
@@ -236,7 +263,7 @@ function NewBook(props) {
   }
   return (
     <div className={className} style={main_child}>
-      <form class="s12" onSubmit={handleSubmit}>
+      <form class="s12" onSubmit={handleSubmitDatabase}>
         <div class="row">
           <div class="input-field col s12">
             <input id="title" type="text" value={title} onChange={handleInputChange} />
