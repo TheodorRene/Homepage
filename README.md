@@ -15,6 +15,10 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+## cd backend && npm start
+
+Launches backend express server on port 8000
+
 ## Run using Netlify
 
 [Link](https://relaxed-wing-3711f3.netlify.com/)  
