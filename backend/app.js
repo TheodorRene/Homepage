@@ -3,7 +3,8 @@ const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const { exec } = require('child_process');
-const db = require('./db_func')
+const db_currbooks = require('./db_func')
+const db_homepage = require('./homepage_db_func')
 
 //Config
 const port = 8000
@@ -19,13 +20,13 @@ app.use(
 
 
 
-app.get('/', (req,res) => db.getAllBooks(req,res))
+app.get('/', (req,res) => db_currbooks.getAllBooks(req,res))
 //New book
-app.post('/newbook', (req,res) => db.addBook(req,res))
+app.post('/newbook', (req,res) => db_currbooks.addBook(req,res))
 //Delete book from database
-app.post('/delbook', (req,res) => db.delBook(req,res))
+app.post('/delbook', (req,res) => db_currbooks.delBook(req,res))
 // Update sellprice for book
-app.post('/setsold', (req,res) => db.setSold(req,res))
+app.post('/setsold', (req,res) => db_currbooks.setSold(req,res))
 
 // todo make function
 app.listen(port, () => {
@@ -37,6 +38,9 @@ app.listen(port, () => {
     console.log(`${stdout}`)
     })
 })
+
+//homepage
+app.get('/allprojects', (req, res) => db_homepage.getAllProjects(req,res))
 
 
 
