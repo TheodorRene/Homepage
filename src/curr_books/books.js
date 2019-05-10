@@ -3,32 +3,12 @@ import "./books.css"
 //Setting up a rest api with express and postgres
 //https://blog.logrocket.com/setting-up-a-restful-api-with-node-js-and-postgresql-d96d6fc892d8
 
+//TODO refactor code, split into more files
+
 const main_child = {
-//  display: "flex",
- // alignItems: "flex-start",
   background: "rgba(255, 255, 255)",
 }
 
-const curr_books = {
-  books: [
-    {
-      title: "Introduction to algorithms",
-      author: "Lars saabye christensen",
-      year: "1997",
-      buyprice: "199",
-      sellprice: "-1",
-    },
-    {
-      title: "Matte 1",
-      author: "God",
-      year: "0",
-      buyprice: "500",
-      sellprice: "-1",
-    },
-
-  ]
-}
-// This is a comment
 
 //Main class
 class CurriculumBooks extends Component {
@@ -58,7 +38,7 @@ class CurriculumBooks extends Component {
     setSold = (book,price) => {
         let newState = Object.assign({}, this.state);
 
-        // TODO remove this paragraph
+        // TODO remove this paragraph, there has to be a better way. Graphql?
         for(var i = 0; i < newState.books.length; i++) {
             var obj = newState.books[i];
             if (obj.title===book.title){
@@ -67,9 +47,9 @@ class CurriculumBooks extends Component {
                 break;
             }
         }
-        this.postData('http://localhost:8000/delbook', {'bookid': book.bookid})
     }
 
+    //TODO make postdata global function, make helper file with functions
     postData = (url, json) => {
         fetch(url, {
             method: 'POST',
@@ -83,17 +63,18 @@ class CurriculumBooks extends Component {
             .catch(error => console.error('Error:', error));
     }
 
-  render() {
-    return (
-        <div className="super_main_books">
-            <h1 class="white-text center-align" > <i class="fas fa-book"></i> CurriculumBooks </h1>
-            <div className={this.state.className}>
-                {this.state.books && <AllBooks books={this.state.books} newbook={this.handleNewBook} setSold={this.setSold} />}
-                <NewBook newBook={this.handleNewBook}/>
-            </div>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="super_main_books">
+                <h1 class="white-text center-align" > <i class="fas fa-book"></i> CurriculumBooks </h1>
+                <div className={this.state.className}>
+                        {this.state.books && <AllBooks books={this.state.books} newbook={this.handleNewBook} setSold={this.setSold} />}
+                        {!this.state.books && <h1> Backend error </h1> } 
+                        <NewBook newBook={this.handleNewBook}/>
+                 </div>
+             </div>
+        );
+    }
 }
 
 // Return all books from state of curriculumsbooks in card format
@@ -170,11 +151,29 @@ function NewBookPrice(props){
   const [price,setPrice] = useState("")
   const [hidden,setHidden] = useState(true)
 
-    const handleSubmit = (e) => {
+    const handleSubmitDB =  (e) => {
         e.preventDefault()
+        postData("http://localhost:8000/setsold",{
+            "bookid": props.book.bookid,
+            "sellprice": price
+        })
         props.setSold(props.book,price)
         ToggleNewBookPrice()
         setPrice("")
+    }
+
+    // TODO Delete
+    const postData = (url, json) => {
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(json),
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }
+        )
+    .then(res => console.log(res))
+        .catch(error => console.error('Error:', error));
     }
 
     const handleInputChange = (e) => {
@@ -187,7 +186,7 @@ function NewBookPrice(props){
     if (!hidden){
     return( 
         <div className="new-book-price">
-            <form class="s12" onSubmit={handleSubmit}>
+            <form class="s12" onSubmit={handleSubmitDB}>
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="newPrice" type="text" value={price} onChange={handleInputChange} />
@@ -228,6 +227,7 @@ function NewBook(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+      //TODO rewrite
     newBook(JSON.parse(`{
       "title": "${title}",
       "author": "${author}",
@@ -240,7 +240,7 @@ function NewBook(props) {
     setYear("")
     setPrice("")
   }
-  const handleSubmitDatabase = (e) => {
+  const handleSubmitDB = (e) => {
       e.preventDefault()
       postData(`http://localhost:8000/newbook`, {
           "title": title,
@@ -251,6 +251,7 @@ function NewBook(props) {
       })
   }
 
+    //TODO remove
     const postData = (url, json) => {
         fetch(url, {
             method: 'POST',
@@ -278,7 +279,7 @@ function NewBook(props) {
   }
   return (
     <div className={className} style={main_child}>
-      <form class="s12" onSubmit={handleSubmitDatabase}>
+      <form class="s12" onSubmit={handleSubmitDB}>
         <div class="row">
           <div class="input-field col s12">
             <input id="title" type="text" value={title} onChange={handleInputChange} />

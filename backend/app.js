@@ -20,8 +20,12 @@ app.use(
 
 
 app.get('/', (req,res) => db.getAllBooks(req,res))
-app.post('/newbook/', (req,res) => db.addBook(req,res))
+//New book
+app.post('/newbook', (req,res) => db.addBook(req,res))
+//Delete book from database
 app.post('/delbook', (req,res) => db.delBook(req,res))
+// Update sellprice for book
+app.post('/setsold', (req,res) => db.setSold(req,res))
 
 // todo make function
 app.listen(port, () => {

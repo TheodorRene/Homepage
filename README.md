@@ -19,9 +19,16 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 Launches backend express server on port 8000
 
+## database
+
+Make a postgresql database named currbooks and run files in sqlinit directory.
+Make sure to change config in backend/db_functions.js
+
 ## Run using Netlify
 
 [Link](https://relaxed-wing-3711f3.netlify.com/)  
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f0ac7095-e6b0-4bbe-8658-d81828dcee47/deploy-status)](https://app.netlify.com/sites/relaxed-wing-3711f3/deploys)
+
+
 
 
