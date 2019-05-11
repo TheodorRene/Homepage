@@ -106,7 +106,7 @@ class AllBooks extends Component {
   listOfBooks = () => {
     return this.props.books.map(book => {
       return (
-        <div key={book.title} class="col s12 m7">
+        <div key={book.bookid} class="col s12 m7">
           <h2 class="header white-text">{book.title}</h2>
           <div class="card horizontal">
             <div class="card-image">
