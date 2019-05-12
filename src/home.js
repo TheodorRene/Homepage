@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import theo from './theodorCv.jpg';
-import water from './free.jpg';
 //https://www.pexels.com/photo/photo-of-seawaves-2120101/
 
 
@@ -32,7 +31,6 @@ const git_daily = "https://github.com/TheodorRene/DailyPuzzles"
 const git_spotify = "https://github.com/TheodorRene/SpotifyPlaylistPic"
 
 const main = {
-    backgroundImage: `url(${water})`,
     height: "100%",
     background: "rgba(192, 192, 192, 0.3)",
     filter: "blur(8px)",
@@ -58,7 +56,7 @@ class Home extends Component {
 
     getProjects = ( typ ) => {
         return this.state.projects.filter(project => (project.type===typ)).map(project => {
-            return (<Project title={project.title} text={project.description} img={theo}/>)
+            return (<Project title={project.title} text={project.description} img={`./images/${project.img_path}`} link={project.link}/>)
         })
 
     }
@@ -100,7 +98,7 @@ class Project extends Component {
                         <p>{this.props.text}</p>
                     </div>
                     <div class="card-action">
-                        <a class="blue-text text-darken-2" href={this.props.link}>Githublink</a>
+                        <a class="blue-text text-darken-2" href={this.props.link}>Link</a>
                     </div>
                 </div>
             </div>
