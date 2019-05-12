@@ -12,19 +12,19 @@ const main_child = {
 
 //Main class
 class CurriculumBooks extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      books: null,
-      className: "main_books",
-    };
-    this.handleNewBook = this.handleNewBook.bind(this);
-    this.setSold = this.setSold.bind(this);
-    this.postData = this.postData.bind(this);
+    constructor(props) {
+        super(props);
+        this.state = {
+            books: null,
+            className: "main_books",
+        };
+        this.handleNewBook = this.handleNewBook.bind(this);
+        this.setSold = this.setSold.bind(this);
+        this.postData = this.postData.bind(this);
 
-  }
+    }
     componentDidMount() {
-        fetch('http://localhost:8000/')
+        fetch('http://localhost:8000/allbooks')
             .then(response => response.json())
             .then(books => this.setState({ books }));
     }

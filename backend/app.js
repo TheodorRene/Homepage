@@ -20,13 +20,17 @@ app.use(
 
 
 
-app.get('/', (req,res) => db_currbooks.getAllBooks(req,res))
+//currbooks
+app.get('/allbooks', (req,res) => db_currbooks.getAllBooks(req,res))
 //New book
 app.post('/newbook', (req,res) => db_currbooks.addBook(req,res))
 //Delete book from database
 app.post('/delbook', (req,res) => db_currbooks.delBook(req,res))
 // Update sellprice for book
 app.post('/setsold', (req,res) => db_currbooks.setSold(req,res))
+
+//homepage
+app.get('/allprojects', (req, res) => db_homepage.getAllProjects(req,res))
 
 // todo make function
 app.listen(port, () => {
@@ -38,12 +42,6 @@ app.listen(port, () => {
     console.log(`${stdout}`)
     })
 })
-
-//homepage
-app.get('/allprojects', (req, res) => db_homepage.getAllProjects(req,res))
-
-
-
 
 
 

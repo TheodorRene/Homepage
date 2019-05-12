@@ -43,7 +43,26 @@ const main = {
 
 
 class Home extends Component {
-    render() {
+    constructor(props){
+        super(props)
+        this.state = {
+            projects: null,
+        }
+        this.getProjects = this.getProjects.bind(this)
+    }
+    componentDidMount(){
+        fetch('http://localhost:8000/allprojects')
+            .then(response => response.json())
+            .then(projects => this.setState({projects}))
+    }
+
+    getProjects = ( typ ) => {
+        return this.state.projects.filter(project => (project.type===typ)).map(project => {
+            return (<Project title={project.title} text={project.description} img={theo}/>)
+        })
+
+    }
+    render(){
         return (
             <div>
                 <div style={main}></div>
@@ -51,24 +70,19 @@ class Home extends Component {
                     <Info />
                     <div class="col s12 m10 offset-m1" >
                         <div class="row" >
-                            <Project title="Summer internship at Tripletex" text="Developed mobile application in React Native" img={theo} />
-                            <Project title="Pleieassistent at " text="Took care of elderly" img={theo} />
-                            <Project title="Internship Vy" text="Jeg kjørte tog" img={logo} />
-                            <Project title="Internship Vy" text="Jeg kjørte tog" img={logo} />
-                            <Project title="Internship Vy" text="Jeg kjørte tog" img={logo} />
+                            {this.state.projects && this.getProjects('jobb')}
                         </div>
                     </div>
                     <h1 class="center-align"> <i class="fas fa-terminal"></i> /home/theodorc/projects</h1>
                     <div class="col s12 m10 offset-m1">
                         <div class="row">
-                            <Project title="DailyChess" text="Twitterbot posting chess puzzles every day" img={logo} link={git_daily} />
-                            <Project title="This page" text="Page written in React" img={logo} />
-                            <Project title="Playlist illustrations" text="Small bash script that generates Spotify-like playlist images" img={logo} link={git_spotify} />
+                            {this.state.projects && this.getProjects('prosjekt')}
                         </div>
                     </div>
                 </div>
             </div>
         )
+
     }
 }
 
