@@ -11,7 +11,7 @@ const pool = new Pool({
 //end config
 
 const getAllProjects = (req, res) => {
-    pool.query('SELECT * from project', (err, results) => {
+    pool.query('SELECT * FROM project ORDER BY date DESC;', (err, results) => {
         if(err){
             throw err
         }

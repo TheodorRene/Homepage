@@ -31,12 +31,7 @@ const git_daily = "https://github.com/TheodorRene/DailyPuzzles"
 const git_spotify = "https://github.com/TheodorRene/SpotifyPlaylistPic"
 
 const main = {
-    height: "100%",
     background: "rgba(192, 192, 192, 0.3)",
-    filter: "blur(8px)",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "contain",
-    backgroundPosition: "center"
 }
 
 
@@ -56,7 +51,7 @@ class Home extends Component {
 
     getProjects = ( typ ) => {
         return this.state.projects.filter(project => (project.type===typ)).map(project => {
-            return (<Project title={project.title} text={project.description} img={`./images/${project.img_path}`} link={project.link}/>)
+            return (<Project key={project.projectid} title={project.title} text={project.description} img={`./images/${project.img_path}`} link={project.link} date={project.date}/>)
         })
 
     }
@@ -87,17 +82,44 @@ class Home extends Component {
 }
 
 class Project extends Component {
+    constructor(props){
+        super(props)
+        this.getYear = this.getYear.bind(this)
+        this.getMonth = this.getMonth.bind(this)
+    }
+
+    getYear = () => new Date(this.props.date).getFullYear()
+    getMonth = () => this.monthName(new Date(this.props.date).getMonth())
+
+    monthName = (i) => {
+        switch(i){
+        case(0): return "Januar"; break;
+        case(1): return "Februar"; break;
+        case(2): return "Mars"; break;
+        case(3): return "April"; break;
+        case(4): return "Mai"; break;
+        case(5): return "Juni"; break;
+        case(6): return "Juli"; break;
+        case(7): return "August"; break;
+        case(8): return "September"; break;
+        case(9): return "Oktober"; break;
+        case(10): return "November"; break;
+        case(11): return "Desember"; break;
+        }
+    }
+
     render() {
         return (
             <div class="col s12 m4">
                 <div class="card medium z-depth-2 ">
                     <div class="card-image">
                         <img src={this.props.img} alt="logo" />
-                        <span class="card-title">{this.props.title}</span>
+                        <span class="card-title" ><b>{this.props.title}</b></span>
                         <div></div>
                     </div>
                     <div class="card-content">
                         <p>{this.props.text}</p>
+                        <p>{this.getMonth()} {this.getYear()}</p>
                     </div>
                     <div class="card-action">
                         <a class="blue-text text-darken-2" href={this.props.link}>Link</a>
