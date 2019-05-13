@@ -69,12 +69,14 @@ class Home extends Component {
                     <div class="col s12 m10 offset-m1" >
                         <div class="row" >
                             {this.state.projects && this.getProjects('jobb')}
+                            {!this.state.projects && <h1> Backend fetch error </h1>}
                         </div>
                     </div>
                     <h1 class="center-align"> <i class="fas fa-terminal"></i> /home/theodorc/projects</h1>
                     <div class="col s12 m10 offset-m1">
                         <div class="row">
                             {this.state.projects && this.getProjects('prosjekt')}
+                            {!this.state.projects && <h1> Backend fetch error </h1>}
                         </div>
                     </div>
                 </div>
