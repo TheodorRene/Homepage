@@ -1,17 +1,7 @@
-const Pool = require('pg').Pool
-//
-//Config
-const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'homepage',
-  password: '123tre!!',
-  port: 5432,
-})
-//end config
+const p = require('./config')
 
 const getAllProjects = (req, res) => {
-    pool.query('SELECT * FROM project ORDER BY date DESC;', (err, results) => {
+    p.hppool.query('SELECT * FROM project ORDER BY date DESC;', (err, results) => {
         if(err){
             throw err
         }
