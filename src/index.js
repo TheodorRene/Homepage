@@ -6,6 +6,7 @@ import Scoreboard from "./comp";
 import Navbar from "./base";
 import Home from "./home";
 import CurriculumBooks from "./curr_books/books";
+import AdminLogin from "./admin/admin_index.js"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 
@@ -18,6 +19,7 @@ ReactDOM.render(
       <Route exact path="/curr" component={CurriculumBooks} />
       <Route path="/edit/" component={App} />
       <Route path="/index" component={Scoreboard} />
+      <Route path="/admin" component={AdminLogin} />
     </Switch>
   </Router>,
   document.getElementById("root")

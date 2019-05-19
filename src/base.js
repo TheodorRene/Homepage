@@ -29,8 +29,8 @@ class Navbar extends Component {
               </NavLink>
             </li>
             <li>
-              <NavLink to={"/index"} activeStyle={active}>
-                Scoreboard
+              <NavLink to={"/admin"} activeStyle={active}>
+                admin
               </NavLink>
             </li>
           </ul>
