@@ -5,6 +5,8 @@
 /backend/node_modules
 /backend/config.js
 /backend/public
+/backend/sqlInitFiles/temp
+
 temp.sql
 /.pnp
 .pnp.js
