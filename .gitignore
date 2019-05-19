@@ -6,6 +6,7 @@
 /backend/config.js
 /backend/public
 /backend/sqlInitFiles/temp
+/backend/sessions
 
 temp.sql
 /.pnp
