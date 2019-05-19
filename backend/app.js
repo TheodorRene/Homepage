@@ -17,6 +17,7 @@ app.use(
     extended: true,
   })
 )
+app.use('/static', express.static('public'))
 
 
 

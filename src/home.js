@@ -7,7 +7,11 @@ import theo from './theodorCv.jpg';
 const terminal = {
     fontFamily:" 'IBM Plex Mono', monospace"
 }
+const backend_link = 'http://localhost:8000'
 
+const main = {
+    background: "rgba(192, 192, 192, 0.3)",
+}
 
 class Info extends Component {
     render() {
@@ -19,19 +23,10 @@ class Info extends Component {
                     stack engineer, and Chief of server operations at the Student
                     Society in Trondheim, Norway. A passion for free software,
                         disco, vim and chess.
-            </p>
+               </p>
             </div>
         )
     }
-}
-//https://api.github.com/users/theodorrene/repos
-// curl ^ get names of repos
-//curl https://raw.githubusercontent.com/TheodorRene/DailyPuzzles/master/makeDB.py to download readme
-const git_daily = "https://github.com/TheodorRene/DailyPuzzles"
-const git_spotify = "https://github.com/TheodorRene/SpotifyPlaylistPic"
-
-const main = {
-    background: "rgba(192, 192, 192, 0.3)",
 }
 
 
@@ -42,19 +37,30 @@ class Home extends Component {
             projects: null,
         }
         this.getProjects = this.getProjects.bind(this)
+        this.getStaticLink = this.getStaticLink.bind(this)
     }
     componentDidMount(){
-        fetch('http://localhost:8000/allprojects')
+        fetch(`${backend_link}/allprojects`)
             .then(response => response.json())
             .then(projects => this.setState({projects}))
     }
 
+    getStaticLink = ( path ) => `${backend_link}/static/${path}`
+
     getProjects = ( typ ) => {
         return this.state.projects.filter(project => (project.type===typ)).map(project => {
-            return (<Project key={project.projectid} title={project.title} text={project.description} img={`./images/${project.img_path}`} link={project.link} date={project.date}/>)
+            return (
+                <Project 
+                    key={project.projectid} 
+                    title={project.title} 
+                    text={project.description} 
+                    img={this.getStaticLink(project.img_path)}
+                    link={project.link} 
+                    date={project.date}/>)
         })
 
     }
+    //maybe make component for project types
     render(){
         return (
             <div>
@@ -67,10 +73,17 @@ class Home extends Component {
                             {!this.state.projects && <h1> Backend fetch error </h1>}
                         </div>
                     </div>
-                    <h1 class="center-align"> <i class="fas fa-terminal"></i> /home/theodorc/projects</h1>
+                    <h1 class="center-align"> <i class="fas fa-terminal"></i> /home/theodorc/prosjekter</h1>
                     <div class="col s12 m10 offset-m1">
                         <div class="row">
                             {this.state.projects && this.getProjects('prosjekt')}
+                            {!this.state.projects && <h1> Backend fetch error </h1>}
+                        </div>
+                    </div>
+                    <h1 class="center-align"> <i class="fas fa-terminal"></i> /home/theodorc/engasjement</h1>
+                    <div class="col s12 m10 offset-m1">
+                        <div class="row">
+                            {this.state.projects && this.getProjects('engasjement')}
                             {!this.state.projects && <h1> Backend fetch error </h1>}
                         </div>
                     </div>
@@ -88,6 +101,7 @@ class Project extends Component {
         this.getMonth = this.getMonth.bind(this)
     }
 
+    //Should maybe be pure functions
     getYear = () => new Date(this.props.date).getFullYear()
     getMonth = () => this.monthName(new Date(this.props.date).getMonth())
 
