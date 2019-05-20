@@ -3,9 +3,13 @@ import "./admin.css"
 const backend = "http://localhost:8000"
 function AdminLogin(props){
 
+    const isAuthenticated = () => true
+
     return(
         <div className="main_admin">
             <LoginForm />
+            {isAuthenticated && <AdminPage />}
+
         </div>
     )
 }
@@ -21,7 +25,62 @@ const postData = (url, json) => {
         headers:{
             'Content-Type': 'application/json'
         }
-    }).then(response => console.log(response)
+    }).then(response => console.log(response))
+}
+
+function AdminPage(props) {
+
+    const handleSubmit = () =>{
+        return
+    }
+    return(
+        <div className="loginform" style={form_background}>
+            <form class="s12" onSubmit={handleSubmit}>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="title" type="text" value={title} onChange={handleInputChange} />
+                        <label htmlFor="title"> Tittel </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="img_path" type="text" value={img_path} onChange={handleInputChange}/>
+                        <label htmlFor="img_path"> Navn på bildet </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="description" type="text" value={description} onChange={handleInputChange}/>
+                        <label htmlFor="description"> Beskrivelse </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="link" type="text" value={link} onChange={handleInputChange}/>
+                        <label htmlFor="link"> Name of image </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select id="type" name="Typer" value="type" onChange={handleInputChange}>
+                            <option value="projekt">Prosjekt</option>
+                            <option value="jobb">Jobb</option>
+                            <option value="engasjement">Engasjement</option>
+                        </select> 
+                        <label htmlFor="type"> Type </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="date" type="text" value={date} onChange={handleInputChange}/>
+                        <label htmlFor="date"> Dato </label>
+                    </div>
+                </div>
+                <button type="submit" class="waves-effect waves-light btn">Login to admin page</button>
+            </form>
+        </div>
+    )
+}
 
 function LoginForm(props){
     const [username, setUsername] = useState("")
@@ -32,7 +91,7 @@ function LoginForm(props){
         postData(`${backend}/login`,{
             username: username,
             password: password
-        }).then
+        })
     }
     const handleInputChange = (e) => {
         const id = e.target.id
@@ -40,6 +99,7 @@ function LoginForm(props){
         switch(id){
             case "username": setUsername(value); break;
             case "password": setPassword(value); break;
+            default: break;
         }
 
     }
