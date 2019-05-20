@@ -1,9 +1,12 @@
 import React, {useState} from 'react'
-
+import "./admin.css"
+const backend = "http://localhost:8000"
 function AdminLogin(props){
 
     return(
-        <LoginForm />
+        <div className="main_admin">
+            <LoginForm />
+        </div>
     )
 }
 
@@ -11,12 +14,25 @@ const form_background = {
   background: "rgba(255, 255, 255)",
 }
 
+const postData = (url, json) => {
+    fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(json),
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    }).then(response => console.log(response)
+
 function LoginForm(props){
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
     const handleSubmit = (e) => {
         console.log(`Username: ${username}\n Password: ${password}`)
+        postData(`${backend}/login`,{
+            username: username,
+            password: password
+        }).then
     }
     const handleInputChange = (e) => {
         const id = e.target.id

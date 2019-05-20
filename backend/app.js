@@ -25,7 +25,7 @@ const users = [
 ]
 
 passport.use(new LocalStrategy(
-    { usernameField: 'email' },
+    { usernameField: 'username' },
     (email, password, done) => {
         console.log('Inside local strategy callback')
         // here is where you make a call to the database
