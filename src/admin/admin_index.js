@@ -9,7 +9,6 @@ function AdminLogin(props){
         <div className="main_admin">
             <LoginForm />
             {isAuthenticated && <AdminPage />}
-
         </div>
     )
 }
@@ -29,9 +28,28 @@ const postData = (url, json) => {
 }
 
 function AdminPage(props) {
+    const [title,setTitle] = useState("")
+    const [img_path,setImg_path] = useState("")
+    const [description,setDescription] = useState("")
+    const [link,setLink] = useState("")
+    const [type,setType] = useState("")
+    const [date,setDate] = useState("")
 
     const handleSubmit = () =>{
         return
+    }
+    const handleInputChange = (e) => {
+        const id = e.target.id;
+        const value = e.target.value;
+        switch(id){
+            case "title": setTitle(value); break;
+            case "img_path": setImg_path(value); break;
+            case "description": setDescription(value); break;
+            case "link": setLink(value); break;
+            case "type": setType(value); break;
+            case "date": setDate(value); break;
+                // no default
+        }
     }
     return(
         <div className="loginform" style={form_background}>
