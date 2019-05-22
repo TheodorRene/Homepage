@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import theo from './theodorCv.jpg';
 //https://www.pexels.com/photo/photo-of-seawaves-2120101/
 
 
@@ -119,6 +117,7 @@ class Project extends Component {
         case(9): return "Oktober"; break;
         case(10): return "November"; break;
         case(11): return "Desember"; break;
+            default: return;
         }
     }
 
