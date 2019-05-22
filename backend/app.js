@@ -3,7 +3,6 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const { exec } = require('child_process');
 
 const db_currbooks = require('./db_func')
 const db_homepage = require('./homepage_db_func')
@@ -13,7 +12,7 @@ const session = require('express-session')
 const FileStore = require('session-file-store')(session);
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const conf = require('./config')
+//const conf = require('./config')
 //const bcrypt = require('bcrypt-nodejs'); // use this for hashed passwords
 
 //Config
@@ -120,9 +119,9 @@ app.get('/authrequired', (req, res) => {
     console.log(`req.user: ${JSON.stringify(req.user)}`)
   
   if(req.isAuthenticated()) {
-    res.send('true')
+    res.status(200).json({"status":'true'})
   } else {
-    res.send('false')
+    res.status(201).json({"status":'false'})
   }
 })
 

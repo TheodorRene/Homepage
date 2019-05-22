@@ -1,6 +1,13 @@
 import React, {useState} from 'react'
 import "./admin.css"
 const backend = "http://localhost:8000"
+
+const checkAuth = () => {
+    fetch(`${backend}/authrequired`,{
+        method: 'GET',
+        credentials: 'include',
+    }).then(res => console.log(res.json())).catch(error => console.error('Error',error))
+}
 function AdminLogin(props){
 
     const isAuthenticated = () => true
@@ -105,16 +112,10 @@ function LoginForm(props){
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(`Username: ${username}\n Password: ${password}`)
-        const js = {
-            "username:": username,
-            "password": password,
-        }
-        console.log(js)
         postData(`${backend}/login`,{
-            "username": "theodorc",
-            "password": "test",
+            "username": username,
+            "password": password,
         })
-        checkAuth()
     }
     const handleInputChange = (e) => {
         e.preventDefault()
@@ -125,14 +126,6 @@ function LoginForm(props){
             case "password": setPassword(value); break;
             default: break;
         }
-    }
-    const checkAuth = () => {
-        fetch(`${backend}/authrequired`,{
-            mode: 'cors',
-            credentials: 'include',
-        }).then(res => {
-            console.log(res)
-        })
     }
     return(
         <div className="loginform" style={form_background}>
