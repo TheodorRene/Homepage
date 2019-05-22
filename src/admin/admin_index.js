@@ -20,6 +20,8 @@ const form_background = {
 const postData = (url, json) => {
     fetch(url, {
         method: 'POST',
+        mode: 'cors',
+        credentials: 'include',
         body: JSON.stringify(json),
         headers:{
             'Content-Type': 'application/json'
@@ -80,11 +82,7 @@ function AdminPage(props) {
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select id="type" name="Typer" value="type" onChange={handleInputChange}>
-                            <option value="projekt">Prosjekt</option>
-                            <option value="jobb">Jobb</option>
-                            <option value="engasjement">Engasjement</option>
-                        </select> 
+                        <input id="type" type="text" value={type} onChange={handleInputChange}/>
                         <label htmlFor="type"> Type </label>
                     </div>
                 </div>
@@ -105,13 +103,21 @@ function LoginForm(props){
     const [password, setPassword] = useState("")
 
     const handleSubmit = (e) => {
+        e.preventDefault()
         console.log(`Username: ${username}\n Password: ${password}`)
+        const js = {
+            "username:": username,
+            "password": password,
+        }
+        console.log(js)
         postData(`${backend}/login`,{
-            username: username,
-            password: password
+            "username": "theodorc",
+            "password": "test",
         })
+        checkAuth()
     }
     const handleInputChange = (e) => {
+        e.preventDefault()
         const id = e.target.id
         const value = e.target.value
         switch(id){
@@ -119,7 +125,14 @@ function LoginForm(props){
             case "password": setPassword(value); break;
             default: break;
         }
-
+    }
+    const checkAuth = () => {
+        fetch(`${backend}/authrequired`,{
+            mode: 'cors',
+            credentials: 'include',
+        }).then(res => {
+            console.log(res)
+        })
     }
     return(
         <div className="loginform" style={form_background}>
@@ -138,6 +151,7 @@ function LoginForm(props){
                 </div>
                 <button type="submit" class="waves-effect waves-light btn">Login to admin page</button>
             </form>
+            <button type="button" onClick={checkAuth} class="waves-effect waves-light btn">Test authentication</button>
         </div>
     )
 }
