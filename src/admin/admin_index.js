@@ -6,16 +6,23 @@ const checkAuth = () => {
     fetch(`${backend}/authrequired`,{
         method: 'GET',
         credentials: 'include',
-    }).then(res => console.log(res.json())).catch(error => console.error('Error',error))
+        redirect: 'follow',
+    }).then(res => res.json()).then(result => {
+        console.log(result.status)
+        return result.status
+    })
+        .catch(error => console.error('Error',error))
 }
 function AdminLogin(props){
 
-    const isAuthenticated = () => true
+    const [status,setStatus] = useState(false)
+     
+
 
     return(
         <div className="main_admin">
-            <LoginForm />
-            {isAuthenticated && <AdminPage />}
+            <LoginForm toggleLogin={setStatus}/>
+            {status && <AdminPage />}
         </div>
     )
 }
@@ -116,7 +123,9 @@ function LoginForm(props){
             "username": username,
             "password": password,
         })
+        props.toggleLogin(true)
     }
+    
     const handleInputChange = (e) => {
         e.preventDefault()
         const id = e.target.id
@@ -127,6 +136,7 @@ function LoginForm(props){
             default: break;
         }
     }
+
     return(
         <div className="loginform" style={form_background}>
             <form class="s12" onSubmit={handleSubmit}>

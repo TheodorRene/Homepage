@@ -105,23 +105,17 @@ app.get('/login', (req, res) => {
 //})
 //
 app.post('/login',
-  passport.authenticate('local'),
-  function(req, res) {
-    // If this function gets called, authentication was successful.
-    // `req.user` contains the authenticated user.
-    res.redirect('/authrequired')
-  });
+    passport.authenticate('local'),(req,res,next)=>{
+        res.status(200)
+    });
 
 app.get('/authrequired', (req, res) => {
-    console.log('Inside GET /authrequired callback')
-    console.log(`User authenticated? ${req.isAuthenticated()}`)
-    console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
-    console.log(`req.user: ${JSON.stringify(req.user)}`)
-  
   if(req.isAuthenticated()) {
-    res.status(200).json({"status":'true'})
+    console.log("Logged in: true")
+    return res.json({"status":'true'})
   } else {
-    res.status(201).json({"status":'false'})
+    console.log("Logged in: false")
+    return res.json({"status":'false'})
   }
 })
 
