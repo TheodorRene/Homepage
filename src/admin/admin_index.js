@@ -98,7 +98,7 @@ function AdminPage(props) {
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="img_path" type="text" value={img_path} onChange={handleInputChange}/>
-                        <label htmlFor="img_path"> Navn på bildet </label>
+                        <label htmlFor="img_path"> Navn på bildet med filending </label>
                     </div>
                 </div>
                 <div class="row">
@@ -110,19 +110,19 @@ function AdminPage(props) {
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="link" type="text" value={link} onChange={handleInputChange}/>
-                        <label htmlFor="link"> Name of image </label>
+                        <label htmlFor="link"> Full link </label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="type" type="text" value={type} onChange={handleInputChange}/>
-                        <label htmlFor="type"> Type </label>
+                        <label htmlFor="type"> Type (prosjekt, jobb, engasjement)</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="date" type="text" value={date} onChange={handleInputChange}/>
-                        <label htmlFor="date"> Dato </label>
+                        <label htmlFor="date"> Dato(YYYY-MM-DD) </label>
                     </div>
                 </div>
                 <button type="submit" class="waves-effect waves-light btn">Submit</button>

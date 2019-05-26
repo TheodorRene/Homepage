@@ -5,6 +5,11 @@ const active = {
   fontWeight: "bold",
   color: "#b8b8b8"
 }; 
+const title = {
+    displayInline: "block", 
+    verticalAlign:"top", 
+    margin:"0%"
+}
 class Navbar extends Component {
   render() {
     return (
@@ -12,8 +17,7 @@ class Navbar extends Component {
         <div class="nav-wrapper">
           <div class="brand-logo center">
             <NavLink exact to={"/"} activeClassName="active">
-              {" "}
-              Theodor René Carlsen{" "}
+              <h1 style={title}>Theodor René Carlsen</h1>
             </NavLink>
           </div>
           <ul class="right hide-on-med-and-down">
