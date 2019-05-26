@@ -1,26 +1,29 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import "./admin.css"
 const backend = "http://localhost:8000"
 
-const checkAuth = () => {
+const checkAuth = (func) => {
     fetch(`${backend}/authrequired`,{
         method: 'GET',
         credentials: 'include',
         redirect: 'follow',
     }).then(res => res.json()).then(result => {
-        console.log(result.status)
-        return result.status
+        func(result.status)
     })
         .catch(error => console.error('Error',error))
 }
 function AdminLogin(props){
 
     const [status,setStatus] = useState(false)
+
+    useEffect(() => {
+        checkAuth(setStatus)
+    },[])
      
     return(
         <div className="main_admin">
-            <LoginForm toggleLogin={setStatus}/>
-            {status && <AdminPage />}
+            {!status && <LoginForm toggleLogin={setStatus}/>}
+            {status && <AdminPage  toggleLogin={setStatus}/>}
         </div>
     )
 }
@@ -51,6 +54,13 @@ function AdminPage(props) {
 
     const handleSubmit = () =>{
         return
+    }
+    const logout = () => {
+        fetch(`${backend}/logout`,{
+            method: 'GET',
+            credentials: 'include',
+            redirect: 'follow',
+        }).then( () => props.toggleLogin(false))
     }
     const handleInputChange = (e) => {
         const id = e.target.id;
@@ -106,6 +116,7 @@ function AdminPage(props) {
                 </div>
                 <button type="submit" class="waves-effect waves-light btn">Login to admin page</button>
             </form>
+                <button type="button" class="waves-effect waves-light btn" onClick={logout}>Log out</button>
         </div>
     )
 }

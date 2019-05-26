@@ -119,6 +119,10 @@ app.get('/authrequired', (req, res) => {
   }
 })
 
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
 
 
 
