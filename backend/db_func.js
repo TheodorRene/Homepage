@@ -15,8 +15,8 @@ const addBook = (req, res) => {
     const book = req.body
     p.cbpool.query('INSERT INTO books (title,author,year,buyprice,sellprice) VALUES ($1, $2, $3, $4, $5)',
         [book.title, book.author, book.year, book.buyprice, book.sellprice], (err,results) => {
-            if(err)
-                throw err
+            if(err){
+                throw err}
          res.status(201).send(`Book has been added to database`)
         })
 }

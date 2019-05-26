@@ -83,24 +83,6 @@ app.get('/login', (req, res) => {
   res.status(200).send(`You got the login page!\n`)
 })
 
-//app.post('/login', (req, res, next) => {
-//  console.log('Inside POST /login callback')
-//  passport.authenticate('local', (err, user, info) => {
-//    console.log('Inside passport.authenticate() callback');
-//    console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
-//    console.log(`req.user: ${JSON.stringify(req.user)}`)
-//    console.log(`err: ${err}`)
-//    console.log(`err: ${req.username}`)
-//    if(info){ return res.send(info.message)}
-//    if(err){ return next(err)}
-//    if(!user){return res.redirect('/login')}
-//    req.login(user, (err) => {
-//        if (err) {return next(err)}
-//        return res.redirect('/authrequired');
-//    })
-//  })(req, res, next);
-//})
-//
 app.post('/login',
     passport.authenticate('local'),(req,res,next)=>{
         res.status(200).send({'status': true})
@@ -139,6 +121,8 @@ app.post('/setsold', (req,res) => db_currbooks.setSold(req,res))
 
 //homepage
 app.get('/allprojects', (req, res) => db_homepage.getAllProjects(req,res))
+app.post('/newproject', (req, res) => db_homepage.newProject(req,res))
+
 
 
 // todo make function

@@ -51,9 +51,19 @@ function AdminPage(props) {
     const [link,setLink] = useState("")
     const [type,setType] = useState("")
     const [date,setDate] = useState("")
+    const [submit, setSubmit] = useState(false)
 
-    const handleSubmit = () =>{
-        return
+    const handleSubmit = (e) =>{
+        e.preventDefault()
+        postData(`${backend}/newproject`, {
+            title,
+            img_path,
+            description,
+            link,
+            type,
+            date,
+
+        }, setSubmit)
     }
     const logout = () => {
         fetch(`${backend}/logout`,{
@@ -114,7 +124,7 @@ function AdminPage(props) {
                         <label htmlFor="date"> Dato </label>
                     </div>
                 </div>
-                <button type="submit" class="waves-effect waves-light btn">Login to admin page</button>
+                <button type="submit" class="waves-effect waves-light btn">Submit</button>
             </form>
                 <button type="button" class="waves-effect waves-light btn" onClick={logout}>Log out</button>
         </div>

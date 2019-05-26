@@ -9,6 +9,20 @@ const getAllProjects = (req, res) => {
     })
 }
 
+//TODO restructure code
+//Make string for query and list/string for values
+const newProject = (req, res) => {
+    const project = req.body
+    p.hppool.query('INSERT INTO project(title,img_path,description, link, type, date) VALUES ($1, $2, $3, $4, $5, $6)',[project.title, project.img_path, project.description, project.link, project.type, project.date], (err, result) => {
+        if(err){
+            throw err
+        }
+         res.status(201).send(`Project has been added to database`)
+
+    })
+    }
+
 module.exports = {
-    getAllProjects
+    getAllProjects,
+    newProject
 }
