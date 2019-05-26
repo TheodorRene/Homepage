@@ -127,7 +127,6 @@ function LoginForm(props){
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(`Username: ${username}\n Password: ${password}`)
         postData(`${backend}/login`,{
             "username": username,
             "password": password,

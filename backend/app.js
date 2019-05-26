@@ -12,15 +12,12 @@ const session = require('express-session')
 const FileStore = require('session-file-store')(session);
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-//const conf = require('./config')
+const local = require('./config')
 //const bcrypt = require('bcrypt-nodejs'); // use this for hashed passwords
 
 //Config
 const port = 8000
 //end config 
-const users = [
-  {id: '12', username: 'theodorc', password: 'test'}
-]
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
 app.use(bodyParser.json())
 app.use(
@@ -48,7 +45,7 @@ passport.use(new LocalStrategy(
         // here is where you make a call to the database
         // to find the user based on their username or email address
         // for now, we'll just pretend we found that it was users[0]
-        const user = users[0]
+        const user = local.users[0]
         if(username === user.username && password === user.password) {
             console.log('Local strategy returned true')
             return done(null, user)
@@ -67,8 +64,8 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
   console.log('Inside deserializeUser callback')
   console.log(`The user id passport saved in the session file store is: ${id}`)
-  const user = users[0].id === id ? users[0] : false; 
-  console.log(`user id deserializeUser: ${users[0].id}`)
+  const user = local.users[0].id === id ? local.users[0] : false; 
+  console.log(`user id deserializeUser: ${local.users[0].id}`)
   done(null, user);
 });
 
@@ -83,7 +80,7 @@ app.get('/test', (req,res) => {
 app.get('/login', (req, res) => {
   console.log('Inside GET /login callback function')
   console.log(req.sessionID)
-  res.send(`You got the login page!\n`)
+  res.status(200).send(`You got the login page!\n`)
 })
 
 //app.post('/login', (req, res, next) => {
@@ -121,7 +118,7 @@ app.get('/authrequired', (req, res) => {
 
 app.get('/logout', function(req, res){
   req.logout();
-  res.redirect('/');
+  res.redirect('/login');
 });
 
 
