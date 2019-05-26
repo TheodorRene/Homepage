@@ -17,8 +17,6 @@ function AdminLogin(props){
 
     const [status,setStatus] = useState(false)
      
-
-
     return(
         <div className="main_admin">
             <LoginForm toggleLogin={setStatus}/>
@@ -31,7 +29,7 @@ const form_background = {
   background: "rgba(255, 255, 255)",
 }
 
-const postData = (url, json) => {
+const postData = (url, json, func) => {
     fetch(url, {
         method: 'POST',
         mode: 'cors',
@@ -40,7 +38,7 @@ const postData = (url, json) => {
         headers:{
             'Content-Type': 'application/json'
         }
-    }).then(response => console.log(response))
+    }).then(response => {func(response.ok)})
 }
 
 function AdminPage(props) {
@@ -122,8 +120,7 @@ function LoginForm(props){
         postData(`${backend}/login`,{
             "username": username,
             "password": password,
-        })
-        props.toggleLogin(true)
+        },props.toggleLogin)
     }
     
     const handleInputChange = (e) => {

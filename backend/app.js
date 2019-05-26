@@ -106,7 +106,7 @@ app.get('/login', (req, res) => {
 //
 app.post('/login',
     passport.authenticate('local'),(req,res,next)=>{
-        res.status(200)
+        res.status(200).send({'status': true})
     });
 
 app.get('/authrequired', (req, res) => {
