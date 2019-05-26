@@ -221,25 +221,6 @@ function NewBook(props) {
   const [price,setPrice] = useState("")
   const [className,setClassName] = useState("rightside")
 
-  const newBook = book => {
-    props.newBook(book);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-      //TODO rewrite
-    newBook(JSON.parse(`{
-      "title": "${title}",
-      "author": "${author}",
-      "year": "${year}",
-      "buyprice": "${price}",
-      "sellprice": -1
-    }`))
-    setTitle("")
-    setAuthor("")
-    setYear("")
-    setPrice("")
-  }
   const handleSubmitDB = (e) => {
       e.preventDefault()
       postData(`http://localhost:8000/newbook`, {
@@ -249,6 +230,10 @@ function NewBook(props) {
           "buyprice": price,
           "sellprice": -1
       })
+      setTitle("")
+      setAuthor("")
+      setYear("")
+      setPrice("")
   }
 
     //TODO remove

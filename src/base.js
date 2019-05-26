@@ -22,17 +22,6 @@ class Navbar extends Component {
           </div>
           <ul class="right hide-on-med-and-down">
             <li>
-              <NavLink to={"/curr"} activeStyle={active}>
-                {" "}
-                Noe annet{" "}
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to={"/edit"} activeStyle={active}>
-                Voting
-              </NavLink>
-            </li>
-            <li>
               <NavLink to={"/admin"} activeStyle={active}>
                 admin
               </NavLink>

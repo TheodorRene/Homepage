@@ -12,10 +12,10 @@ import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <Router>
-      {window.location.pathname!=="/" && <Navbar />}
+      <Navbar />
     <Switch>
-      <Route exact path="/" component={WorkInProgress} />
-      <Route exact path="/home" component={Home} />
+      <Route exact path="/workinprogress" component={WorkInProgress} />
+      <Route exact path="/" component={Home} />
       <Route exact path="/curr" component={CurriculumBooks} />
       <Route path="/edit/" component={App} />
       <Route path="/index" component={Scoreboard} />

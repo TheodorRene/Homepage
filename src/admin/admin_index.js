@@ -65,6 +65,12 @@ function AdminPage(props) {
             date,
 
         }, setSubmit)
+        setTitle("")
+        setImg_path("")
+        setDescription("")
+        setLink("")
+        setType("")
+        setDate("")
     }
     const logout = () => {
         fetch(`${backend}/logout`,{
@@ -135,7 +141,7 @@ function AdminPage(props) {
 const Button = withRouter(({ history }) => (
   <button
     type='button'
-    onClick={() => { history.push('/home') }}
+    onClick={() => { history.push('/') }}
   >
     Go home
   </button>
