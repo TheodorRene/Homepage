@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
@@ -26,18 +26,23 @@ ReactDOM.render(
 );
 
 function WorkInProgress(props){
+    const [isVisible,setisVisible] = useState(false)
+
 
 const center2 = {
     position: "absolute",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    flexDirection: "column",
     width: "100%",
     height: "100%"
 }
     return(
         <div style={center2}>
             <h1 className="white-text"> Work in progress </h1>
+            <button type="button" class="waves-effect btn" onClick={() => setisVisible(!isVisible)}> Login </button>
+            {isVisible && <AdminLogin />}
         </div>
     )
 }

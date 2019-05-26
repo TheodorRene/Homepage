@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import "./admin.css"
+import { withRouter } from 'react-router-dom'
 const backend = "http://localhost:8000"
 
 const checkAuth = (func) => {
@@ -127,9 +128,18 @@ function AdminPage(props) {
                 <button type="submit" class="waves-effect waves-light btn">Submit</button>
             </form>
                 <button type="button" class="waves-effect waves-light btn" onClick={logout}>Log out</button>
+            <Button />
         </div>
     )
 }
+const Button = withRouter(({ history }) => (
+  <button
+    type='button'
+    onClick={() => { history.push('/home') }}
+  >
+    Go home
+  </button>
+))
 
 function LoginForm(props){
     const [username, setUsername] = useState("")
@@ -171,7 +181,6 @@ function LoginForm(props){
                 </div>
                 <button type="submit" class="waves-effect waves-light btn">Login to admin page</button>
             </form>
-            <button type="button" onClick={checkAuth} class="waves-effect waves-light btn">Test authentication</button>
         </div>
     )
 }
