@@ -21,8 +21,16 @@ const newProject = (req, res) => {
 
     })
     }
+const getInfo = (req, res) => {
+    p.hppool.query('SELECT text FROM info LIMIT 1;', (err, results) => {
+        if(err){
+            throw err}
+        res.status(200).json(results.rows)
+    })
+}
 
 module.exports = {
     getAllProjects,
-    newProject
+    newProject,
+    getInfo
 }

@@ -12,15 +12,24 @@ const main = {
 }
 
 class Info extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            info: null,
+        }
+    }
+
+    componentDidMount() {
+        fetch(`${backend_link}/info`)
+            .then(response => response.json())
+            .then(info => this.setState({info}))
+    }
     render() {
         return (
             <div class={main}>
                 <h1 class="center-align white-text" style={terminal}> <i class="fas fa-terminal"></i> /home/theodorc </h1>
                 <p class="flow-text white-text">
-                    Studying computer science at NTNU, full
-                    stack engineer, and Chief of server operations at the Student
-                    Society in Trondheim, Norway. A passion for free software,
-                        disco, vim and chess.
+                    {this.state.info && this.state.info[0].text}
                </p>
             </div>
         )
