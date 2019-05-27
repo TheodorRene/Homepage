@@ -3,6 +3,8 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const fs = require('fs')
+const https = require('https')
 
 const db_currbooks = require('./db_func')
 const db_homepage = require('./homepage_db_func')
@@ -16,14 +18,13 @@ const local = require('./config')
 //const bcrypt = require('bcrypt-nodejs'); // use this for hashed passwords
 
 //Config
-const port = 8000
+const port = 80
 //end config 
-app.use(cors({credentials: true}))
+app.use(cors({credentials: true,methods:"GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS",origin: 'https://theodorc.no'}))
 app.use(bodyParser.json())
 app.use(
   bodyParser.urlencoded({
-    extended: true,
-  })
+    extended: true, })
 )
 app.use(session({
   genid: (req) => {
@@ -132,6 +133,13 @@ app.listen(port, () => {
     console.log(`
     \n\n\n\n\n\n\n\n\n\n\n\n
     currbooks📚 backend running on port ${port}🔥`)
+})
+https.createServer({
+	  key: fs.readFileSync('/etc/letsencrypt/live/api.theodorc.no/privkey.pem'),
+	  cert: fs.readFileSync('/etc/letsencrypt/live/api.theodorc.no/cert.pem'),
+	  ca: fs.readFileSync('/etc/letsencrypt/live/api.theodorc.no/chain.pem')
+}, app).listen(443, () => {
+	  console.log('Listening...')
 })
 
 
