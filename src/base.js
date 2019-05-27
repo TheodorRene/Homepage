@@ -20,18 +20,17 @@ class Navbar extends Component {
               <h1 style={title}>Theodor René Carlsen</h1>
             </NavLink>
           </div>
-          <ul class="right hide-on-med-and-down">
-            <li>
-              <NavLink to={"/admin"} activeStyle={active}>
-                admin
-              </NavLink>
-            </li>
-          </ul>
         </div>
       </nav>
     );
   }
 }
+//          <ul class="right hide-on-med-and-down">
+//           <li>
+//             <NavLink to={"/admin"} activeStyle={active}>
+//               admin
+//             </NavLink>
+//           </li>
 
 
 export default Navbar;
