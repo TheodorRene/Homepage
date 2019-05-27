@@ -47,7 +47,7 @@ class Home extends Component {
         this.getStaticLink = this.getStaticLink.bind(this)
     }
     componentDidMount(){
-        fetch(`${backend_link}/allprojects`,{method:'cors', redirect:'follow'})
+        fetch(`${backend_link}/allprojects`)
             .then(response => response.json())
             .then(projects => this.setState({projects}))
     }
