@@ -123,7 +123,13 @@ app.post('/setsold', (req,res) => db_currbooks.setSold(req,res))
 
 //homepage
 app.get('/allprojects', (req, res) => db_homepage.getAllProjects(req,res))
-app.post('/newproject', (req, res) => db_homepage.newProject(req,res))
+app.post('/newproject', (req, res) => {
+    if(req.isAuthenticated()){
+        return db_homepage.newProject(req,res)
+    }else {
+        return res.send(401)
+    }
+})
 app.get('/info', (req, res) => db_homepage.getInfo(req,res))
 
 
