@@ -108,6 +108,7 @@ app.get('/logout', function(req, res){
 
 //Host static files
 app.use('/static', express.static('public'))
+app.use('/', express.static('acme',{ dotfiles:'allow' }))
 
 
 //currbooks
@@ -125,7 +126,7 @@ app.post('/newproject', (req, res) => db_homepage.newProject(req,res))
 app.get('/info', (req, res) => db_homepage.getInfo(req,res))
 
 
-
+ 
 // todo make function
 app.listen(port, () => {
     console.log(`

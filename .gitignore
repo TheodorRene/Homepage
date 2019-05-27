@@ -7,6 +7,7 @@
 /backend/public
 /backend/sqlInitFiles/temp
 /backend/sessions
+/backend/acme/*
 
 temp.sql
 /.pnp
