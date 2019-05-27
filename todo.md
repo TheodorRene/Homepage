@@ -10,3 +10,4 @@
 * Refactor unnecessary code (move currbooks and pb vs sesam)
 * Set up logging and notifications from backend server
 * Add cronjob for renewing certificates
+* Add dev config and prod config
