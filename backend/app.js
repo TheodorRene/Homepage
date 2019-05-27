@@ -18,7 +18,7 @@ const local = require('./config')
 //Config
 const port = 8000
 //end config 
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
+app.use(cors({credentials: true}))
 app.use(bodyParser.json())
 app.use(
   bodyParser.urlencoded({
