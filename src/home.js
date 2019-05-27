@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 const terminal = {
     fontFamily:" 'IBM Plex Mono', monospace"
 }
-const backend_link = 'http://157.230.124.237:8000'
+const backend_link = 'http://backend.theodorc.no'
 
 const main = {
     background: "rgba(192, 192, 192, 0.3)",

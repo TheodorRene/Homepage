@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import "./admin.css"
 import { withRouter } from 'react-router-dom'
-const backend = "http://157.230.124.237:8000"
+const backend = "backend.theodorc.no"
 
 const checkAuth = (func) => {
     fetch(`${backend}/authrequired`,{
