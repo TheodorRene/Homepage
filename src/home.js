@@ -20,7 +20,7 @@ class Info extends Component {
     }
 
     componentDidMount() {
-        fetch(`${backend_link}/info`, {mode:'cors'})
+        fetch(`${backend_link}/info`, {mode:'cors',redirect:'follow'})
             .then(response => response.json())
             .then(info => this.setState({info}))
     }
@@ -47,7 +47,7 @@ class Home extends Component {
         this.getStaticLink = this.getStaticLink.bind(this)
     }
     componentDidMount(){
-        fetch(`${backend_link}/allprojects`,{method:'cors'})
+        fetch(`${backend_link}/allprojects`,{method:'cors', redirect:'follow'})
             .then(response => response.json())
             .then(projects => this.setState({projects}))
     }
