@@ -96,10 +96,10 @@ app.post('/login',
 app.get('/authrequired', (req, res) => {
   if(req.isAuthenticated()) {
     console.log("Logged in: true")
-    return res.json({"status":'true'})
+    return res.json({"status":true})
   } else {
     console.log("Logged in: false")
-    return res.json({"status":'false'})
+    return res.json({"status":false})
   }
 })
 

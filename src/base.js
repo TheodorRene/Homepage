@@ -6,6 +6,10 @@ const title = {
     verticalAlign:"top", 
     margin:"0%"
 }
+const active ={
+    fontWeight: "bold",
+    color: "#b8b8b8"
+}
 class Navbar extends Component {
   render() {
     return (
@@ -16,17 +20,18 @@ class Navbar extends Component {
               <h1 style={title}>Theodor René Carlsen</h1>
             </NavLink>
           </div>
+          <ul class="right hide-on-med-and-down">
+           <li>
+             <NavLink to={"/admin"} activeStyle={active}>
+               admin
+             </NavLink>
+           </li>
+       </ul>
         </div>
       </nav>
     );
   }
 }
-//          <ul class="right hide-on-med-and-down">
-//           <li>
-//             <NavLink to={"/admin"} activeStyle={active}>
-//               admin
-//             </NavLink>
-//           </li>
 
 
 export default Navbar;
