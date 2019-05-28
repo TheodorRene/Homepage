@@ -37,7 +37,7 @@ const center2 = {
     return(
         <div style={center2}>
             <h1 className="white-text"> Work in progress </h1>
-            <button type="button" class="waves-effect btn" onClick={() => setisVisible(!isVisible)}> Login </button>
+            <button type="button" className="waves-effect btn" onClick={() => setisVisible(!isVisible)}> Login </button>
             {isVisible && <AdminLogin />}
         </div>
     )

@@ -52,7 +52,6 @@ function AdminPage(props) {
     const [link,setLink] = useState("")
     const [type,setType] = useState("")
     const [date,setDate] = useState("")
-    const [submit, setSubmit] = useState(false)
 
     const handleSubmit = (e) =>{
         e.preventDefault()
@@ -64,8 +63,7 @@ function AdminPage(props) {
             type,
             date,
 
-        }, setSubmit)
-        console.log(submit)
+        }, (arg) => {} )
         setTitle("")
         setImg_path("")
         setDescription("")
@@ -95,46 +93,46 @@ function AdminPage(props) {
     }
     return(
         <div className="loginform" style={form_background}>
-            <form class="s12" onSubmit={handleSubmit}>
-                <div class="row">
-                    <div class="input-field col s12">
+            <form className="s12" onSubmit={handleSubmit}>
+                <div className="row">
+                    <div className="input-field col s12">
                         <input id="title" type="text" value={title} onChange={handleInputChange} />
                         <label htmlFor="title"> Tittel </label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
+                <div className="row">
+                    <div className="input-field col s12">
                         <input id="img_path" type="text" value={img_path} onChange={handleInputChange}/>
                         <label htmlFor="img_path"> Navn på bildet med filending </label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
+                <div className="row">
+                    <div className="input-field col s12">
                         <input id="description" type="text" value={description} onChange={handleInputChange}/>
                         <label htmlFor="description"> Beskrivelse </label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
+                <div className="row">
+                    <div className="input-field col s12">
                         <input id="link" type="text" value={link} onChange={handleInputChange}/>
                         <label htmlFor="link"> Full link </label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
+                <div className="row">
+                    <div className="input-field col s12">
                         <input id="type" type="text" value={type} onChange={handleInputChange}/>
                         <label htmlFor="type"> Type (prosjekt, jobb, engasjement)</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
+                <div className="row">
+                    <div className="input-field col s12">
                         <input id="date" type="text" value={date} onChange={handleInputChange}/>
                         <label htmlFor="date"> Dato(YYYY-MM-DD) </label>
                     </div>
                 </div>
-                <button type="submit" class="waves-effect waves-light btn">Submit</button>
+                <button type="submit" className="waves-effect waves-light btn">Submit</button>
             </form>
-                <button type="button" class="waves-effect waves-light btn" onClick={logout}>Log out</button>
+                <button type="button" className="waves-effect waves-light btn" onClick={logout}>Log out</button>
             <Button />
         </div>
     )
@@ -151,13 +149,21 @@ const Button = withRouter(({ history }) => (
 function LoginForm(props){
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [submit, setSubmit] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        setSubmit(true)
         postData(`${backend}/login`,{
             "username": username,
             "password": password,
         },props.toggleLogin)
+    }
+
+    const error = () =>{
+        return (
+            <h1 className="error"> Wrong credentials </h1>
+        )
     }
     
     const handleInputChange = (e) => {
@@ -173,20 +179,21 @@ function LoginForm(props){
 
     return(
         <div className="loginform" style={form_background}>
-            <form class="s12" onSubmit={handleSubmit}>
-                <div class="row">
-                    <div class="input-field col s12">
+            {submit && error()}
+            <form className="s12" onSubmit={handleSubmit}>
+                <div className="row">
+                    <div className="input-field col s12">
                         <input id="username" type="text" value={username} onChange={handleInputChange} />
                         <label htmlFor="username"> Username </label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
+                <div className="row">
+                    <div className="input-field col s12">
                         <input id="password" type="text" value={password} onChange={handleInputChange}/>
                         <label htmlFor="username"> Password </label>
                     </div>
                 </div>
-                <button type="submit" class="waves-effect waves-light btn">Login to admin page</button>
+                <button type="submit" className="waves-effect waves-light btn">Login to admin page</button>
             </form>
         </div>
     )

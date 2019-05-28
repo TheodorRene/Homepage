@@ -13,14 +13,14 @@ const active ={
 class Navbar extends Component {
   render() {
     return (
-      <nav class="blue-grey">
-        <div class="nav-wrapper">
-          <div class="brand-logo center">
+      <nav className="blue-grey">
+        <div className="nav-wrapper">
+          <div className="brand-logo center">
             <NavLink exact to={"/"} activeClassName="active">
               <h1 style={title}>Theodor René Carlsen</h1>
             </NavLink>
           </div>
-          <ul class="right hide-on-med-and-down">
+          <ul className="right hide-on-med-and-down">
            <li>
              <NavLink to={"/admin"} activeStyle={active}>
                admin

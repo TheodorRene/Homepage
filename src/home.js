@@ -26,9 +26,9 @@ class Info extends Component {
     }
     render() {
         return (
-            <div class={main}>
-                <h1 class="center-align white-text" style={terminal}> <i class="fas fa-terminal"></i> /home/theodorc </h1>
-                <p class="flow-text white-text">
+            <div className={main}>
+                <h1 className="center-align white-text" style={terminal}> <i className="fas fa-terminal"></i> /home/theodorc </h1>
+                <p className="flow-text white-text">
                     {this.state.info && this.state.info[0].text}
                </p>
             </div>
@@ -72,31 +72,31 @@ class Home extends Component {
         return (
             <div>
                 <div style={main}></div>
-                <div class="container" >
+                <div className="container" >
                     <Info />
-                    <div class="col s12 m10 offset-m1" >
-                        <div class="row" >
+                    <div className="col s12 m10 offset-m1" >
+                        <div className="row" >
                             {this.state.projects && this.getProjects('jobb')}
                             {!this.state.projects && <h1> Backend fetch error </h1>}
                         </div>
                     </div>
-                    <h1 class="center-align"> <i class="fas fa-terminal"></i> /home/theodorc/prosjekter</h1>
-                    <div class="col s12 m10 offset-m1">
-                        <div class="row">
+                    <h1 className="center-align"> <i className="fas fa-terminal"></i> /home/theodorc/prosjekter</h1>
+                    <div className="col s12 m10 offset-m1">
+                        <div className="row">
                             {this.state.projects && this.getProjects('prosjekt')}
                             {!this.state.projects && <h1> Backend fetch error </h1>}
                         </div>
                     </div>
-                    <h1 class="center-align"> <i class="fas fa-terminal"></i> /home/theodorc/engasjement</h1>
-                    <div class="col s12 m10 offset-m1">
-                        <div class="row">
+                    <h1 className="center-align"> <i className="fas fa-terminal"></i> /home/theodorc/engasjement</h1>
+                    <div className="col s12 m10 offset-m1">
+                        <div className="row">
                             {this.state.projects && this.getProjects('engasjement')}
                             {!this.state.projects && <h1> Backend fetch error </h1>}
                         </div>
                     </div>
-                    <h1 class="center-align"> <i class="fas fa-terminal"></i> /home/theodorc/utdanning</h1>
-                    <div class="col s12 m10 offset-m1">
-                        <div class="row">
+                    <h1 className="center-align"> <i className="fas fa-terminal"></i> /home/theodorc/utdanning</h1>
+                    <div className="col s12 m10 offset-m1">
+                        <div className="row">
                             {this.state.projects && this.getProjects('utdanning')}
                             {!this.state.projects && <h1> Backend fetch error </h1>}
                         </div>
@@ -139,19 +139,19 @@ class Project extends Component {
 
     render() {
         return (
-            <div class="col s12 m4">
-                <div class="card medium z-depth-2 ">
-                    <div class="card-image">
+            <div className="col s12 m4">
+                <div className="card medium z-depth-2 ">
+                    <div className="card-image">
                         <img src={this.props.img} alt="logo" />
-                        <span class="card-title" ><b>{this.props.title}</b></span>
+                        <span className="card-title" ><b>{this.props.title}</b></span>
                         <div></div>
                     </div>
-                    <div class="card-content">
+                    <div className="card-content">
                         <p>{this.props.text}</p>
                         <p>{this.getMonth()} {this.getYear()}</p>
                     </div>
-                    <div class="card-action">
-                        <a class="blue-text text-darken-2" href={this.props.link}>Link</a>
+                    <div className="card-action">
+                        <a className="blue-text text-darken-2" href={this.props.link}>Link</a>
                     </div>
                 </div>
             </div>

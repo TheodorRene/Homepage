@@ -65,8 +65,8 @@ class CurriculumBooks extends Component {
 
     render() {
         return (
-            <div className="super_main_books">
-                <h1 class="white-text center-align" > <i class="fas fa-book"></i> CurriculumBooks </h1>
+            <div classNameName="super_main_books">
+                <h1 className="white-text center-align" > <i className="fas fa-book"></i> CurriculumBooks </h1>
                 <div className={this.state.className}>
                         {this.state.books && <AllBooks books={this.state.books} newbook={this.handleNewBook} setSold={this.setSold} />}
                         {!this.state.books && <h1> Backend error </h1> } 
@@ -106,17 +106,17 @@ class AllBooks extends Component {
   listOfBooks = () => {
     return this.props.books.map(book => {
       return (
-        <div key={book.bookid} class="col s12 m7">
-          <h2 class="header white-text">{book.title}</h2>
-          <div class="card horizontal">
-            <div class="card-image">
+        <div key={book.bookid} className="col s12 m7">
+          <h2 className="header white-text">{book.title}</h2>
+          <div className="card horizontal">
+            <div className="card-image">
               <img
                 src="https://picsum.photos/200/300"
                 alt="picutre"
               />
             </div>
-            <div class="card-stacked">
-              <div class="card-content">
+            <div className="card-stacked">
+              <div className="card-content">
                 <p>Author: {book.author}</p>
                 <p>Price: {book.buyprice}</p>
                 <p>Year: {book.year}</p>
@@ -129,7 +129,7 @@ class AllBooks extends Component {
               </div>
                 <NewBookPrice book={book} hidden={this.state.hiddenNewBookPrice} setSold={this.props.setSold} />
           </div>
-          {this.isSold(book) &&  <span class="new badge blue"data-badge-caption="Sold"></span> }
+          {this.isSold(book) &&  <span className="new badge blue"data-badge-caption="Sold"></span> }
       </div>
   </div>
       );
@@ -185,18 +185,18 @@ function NewBookPrice(props){
 
     if (!hidden){
     return( 
-        <div className="new-book-price">
-            <form class="s12" onSubmit={handleSubmitDB}>
-                <div class="row">
-                    <div class="input-field col s12">
+        <div classNameName="new-book-price">
+            <form className="s12" onSubmit={handleSubmitDB}>
+                <div className="row">
+                    <div className="input-field col s12">
                         <input id="newPrice" type="text" value={price} onChange={handleInputChange} />
                         <label htmlFor="newPrice">{props.book.title}</label>
                     </div>
                     <div >
-                        <button type="submit" class="waves-effect waves-light btn">Add sell price</button>
+                        <button type="submit" className="waves-effect waves-light btn">Add sell price</button>
                     </div>
                     <div>
-                        <button type="button" class="waves-effect waves-light btn" onClick={ToggleNewBookPrice}>Mark as sold</button> 
+                        <button type="button" className="waves-effect waves-light btn" onClick={ToggleNewBookPrice}>Mark as sold</button> 
                     </div>
                 </div>
             </form>
@@ -204,8 +204,8 @@ function NewBookPrice(props){
     )
     } else {
         return(
-        <div class="card-action">
-            <button type="button" class="waves-effect waves-light btn" onClick={ToggleNewBookPrice}>Mark as sold</button> 
+        <div className="card-action">
+            <button type="button" className="waves-effect waves-light btn" onClick={ToggleNewBookPrice}>Mark as sold</button> 
         </div>
         )
     }
@@ -264,33 +264,33 @@ function NewBook(props) {
   }
   return (
     <div className={className} style={main_child}>
-      <form class="s12" onSubmit={handleSubmitDB}>
-        <div class="row">
-          <div class="input-field col s12">
+      <form className="s12" onSubmit={handleSubmitDB}>
+        <div className="row">
+          <div className="input-field col s12">
             <input id="title" type="text" value={title} onChange={handleInputChange} />
             <label htmlFor="title">Title</label>
           </div>
         </div>
-        <div class="row">
-          <div class="input-field col s12">
+        <div className="row">
+          <div className="input-field col s12">
             <input id="author" type="text" value={author} onChange={handleInputChange}/>
             <label htmlFor="author">Author</label>
           </div>
         </div>
-        <div class="row">
-          <div class="input-field col s12">
+        <div className="row">
+          <div className="input-field col s12">
             <input id="year" type="text" value={year} onChange={handleInputChange}/>
             <label htmlFor="year">Year</label>
           </div>
         </div>
-        <div class="row">
-          <div class="input-field col s12">
+        <div className="row">
+          <div className="input-field col s12">
             <input id="price" type="text" value={price} onChange={handleInputChange}/>
             <label htmlFor="price">Price</label>
           </div>
         </div>
 
-        <button type="submit" class="waves-effect waves-light btn">Add new book</button>
+        <button type="submit" className="waves-effect waves-light btn">Add new book</button>
       </form>
     </div>
   );
