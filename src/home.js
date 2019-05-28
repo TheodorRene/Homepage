@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import { backend as backend_link } from './config'; 
 //https://www.pexels.com/photo/photo-of-seawaves-2120101/
 
 
 const terminal = {
     fontFamily:" 'IBM Plex Mono', monospace"
 }
-const backend_link = 'https://api.theodorc.no'
 
 const main = {
     background: "rgba(192, 192, 192, 0.3)",
