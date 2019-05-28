@@ -16,11 +16,15 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const local = require('./config')
 //const bcrypt = require('bcrypt-nodejs'); // use this for hashed passwords
+const arg1 = process.argv[2]
 
 //Config
-const port = 80
+const isDev = () => arg1==='dev'
+const port = isDev ? 8000 : 80
+const cors_origin = isDev ? 'http://localhost:3000' : 'https://theodorc.no' 
+
 //end config 
-app.use(cors({credentials: true,methods:"GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS",origin: 'https://theodorc.no'}))
+app.use(cors({credentials: true,methods:"GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS",origin: cors_origin}))
 app.use(bodyParser.json())
 app.use(
   bodyParser.urlencoded({
@@ -140,13 +144,18 @@ app.listen(port, () => {
     \n\n\n\n\n\n\n\n\n\n\n\n
     currbooks📚 backend running on port ${port}🔥`)
 })
-https.createServer({
-	  key: fs.readFileSync('/etc/letsencrypt/live/api.theodorc.no/privkey.pem'),
-	  cert: fs.readFileSync('/etc/letsencrypt/live/api.theodorc.no/cert.pem'),
-	  ca: fs.readFileSync('/etc/letsencrypt/live/api.theodorc.no/chain.pem')
-}, app).listen(443, () => {
-	  console.log('Listening...')
-})
+
+
+
+if(arg1!=='dev'){
+    https.createServer({
+        key: fs.readFileSync('/etc/letsencrypt/live/api.theodorc.no/privkey.pem'),
+        cert: fs.readFileSync('/etc/letsencrypt/live/api.theodorc.no/cert.pem'),
+        ca: fs.readFileSync('/etc/letsencrypt/live/api.theodorc.no/chain.pem')
+    }, app).listen(443, () => {
+        console.log('Listening...')
+    })
+}
 
 
 

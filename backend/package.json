@@ -15,6 +15,7 @@
     "uuid": "^3.3.2"
   },
   "scripts": {
-    "start": "nodemon --ignore sessions/ app.js"
+    "start": "nodemon --ignore sessions/ app.js",
+    "start dev": "nodemon --ignore sessions/ app.js dev"
   }
 }
