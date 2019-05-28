@@ -219,7 +219,7 @@ function NewBook(props) {
   const [author,setAuthor] = useState("")
   const [year, setYear] = useState("")
   const [price,setPrice] = useState("")
-  const [className,setClassName] = useState("rightside")
+  const [className] = useState("rightside")
 
   const handleSubmitDB = (e) => {
       e.preventDefault()

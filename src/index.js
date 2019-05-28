@@ -1,8 +1,6 @@
 import React,{useState} from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import Scoreboard from "./comp";
+import "./css/index.css";
 import Navbar from "./base";
 import Home from "./home";
 import CurriculumBooks from "./curr_books/books";
@@ -17,8 +15,6 @@ ReactDOM.render(
       <Route exact path="/workinprogress" component={WorkInProgress} />
       <Route exact path="/" component={Home} />
       <Route exact path="/curr" component={CurriculumBooks} />
-      <Route path="/edit/" component={App} />
-      <Route path="/index" component={Scoreboard} />
       <Route path="/admin" component={AdminLogin} />
     </Switch>
   </Router>,

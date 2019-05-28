@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
-const active = {
-  fontWeight: "bold",
-  color: "#b8b8b8"
-}; 
 const title = {
     displayInline: "block", 
     verticalAlign:"top", 

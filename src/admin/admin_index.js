@@ -65,6 +65,7 @@ function AdminPage(props) {
             date,
 
         }, setSubmit)
+        console.log(submit)
         setTitle("")
         setImg_path("")
         setDescription("")
