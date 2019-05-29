@@ -20,8 +20,8 @@ const arg1 = process.argv[2]
 
 //Config
 const isDev = () => arg1==='dev'
-const port = isDev ? 8000 : 80
-const cors_origin = isDev ? 'http://localhost:3000' : 'https://theodorc.no' 
+const port = isDev() ? 8000 : 80
+const cors_origin = isDev() ? 'http://localhost:3000' : 'https://theodorc.no' 
 
 //end config 
 app.use(cors({credentials: true,methods:"GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS",origin: cors_origin}))
