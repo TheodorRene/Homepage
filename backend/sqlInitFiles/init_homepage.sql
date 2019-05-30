@@ -5,7 +5,9 @@ CREATE TABLE project (
     description TEXT,
     link varchar(255),
     type varchar(255),
-    date DATE
+    date DATE,
+    date_end DATE,
+    linktext varchar(255)
 );
 
 CREATE TABLE info (

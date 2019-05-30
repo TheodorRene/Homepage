@@ -26,6 +26,11 @@ class Navbar extends Component {
                admin
              </NavLink>
            </li>
+           <li>
+             <NavLink to={"/kontakt"} activeStyle={active}>
+               Kontakt meg
+             </NavLink>
+           </li>
        </ul>
         </div>
       </nav>

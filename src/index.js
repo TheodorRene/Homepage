@@ -1,12 +1,15 @@
 import React,{useState} from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import * as serviceWorker from "./serviceWorker";
+
 import "./css/index.css";
 import Navbar from "./base";
 import Home from "./home";
 import CurriculumBooks from "./curr_books/books";
-import AdminLogin from "./admin/admin_index.js"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import * as serviceWorker from "./serviceWorker";
+import AdminLogin from "./admin/admin_index"
+import Contact from "./contact_form"
+
 
 ReactDOM.render(
   <Router>
@@ -16,6 +19,7 @@ ReactDOM.render(
       <Route exact path="/" component={Home} />
       <Route exact path="/curr" component={CurriculumBooks} />
       <Route path="/admin" component={AdminLogin} />
+      <Route path="/kontakt" component={Contact} />
     </Switch>
   </Router>,
   document.getElementById("root")
