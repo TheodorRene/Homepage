@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
+
 const fs = require('fs')
 const https = require('https')
 
@@ -75,12 +76,6 @@ passport.deserializeUser((id, done) => {
 });
 
 
-app.get('/test', (req,res) => {
-    console.log('Inside the homepage callback function')
-    console.log(req.sessionID)
-    res.send(`You hit home page!\n`)
-})
-
 // create the login get and post routes
 app.get('/login', (req, res) => {
   console.log('Inside GET /login callback function')
@@ -94,13 +89,8 @@ app.post('/login',
     });
 
 app.get('/authrequired', (req, res) => {
-  if(req.isAuthenticated()) {
-    console.log("Logged in: true")
-    return res.json({"status":true})
-  } else {
-    console.log("Logged in: false")
-    return res.json({"status":false})
-  }
+  const status = req.isAuthenticated()
+  return res.json({"status":status})
 })
 
 app.get('/logout', function(req, res){
@@ -135,8 +125,6 @@ app.post('/newproject', (req, res) => {
     }
 })
 app.get('/info', (req, res) => db_homepage.getInfo(req,res))
-
-
  
 // todo make function
 app.listen(port, () => {
@@ -144,8 +132,6 @@ app.listen(port, () => {
     \n\n\n\n\n\n\n\n\n\n\n\n
     currbooks📚 backend running on port ${port}🔥`)
 })
-
-
 
 if(arg1!=='dev'){
     https.createServer({
