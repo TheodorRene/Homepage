@@ -7,3 +7,8 @@ CREATE TABLE project (
     type varchar(255),
     date DATE
 );
+
+CREATE TABLE info (
+    infoid SERIAL PRIMARY KEY,
+    text TEXT,
+)
