@@ -65,7 +65,7 @@ class CurriculumBooks extends Component {
 
     render() {
         return (
-            <div classNameName="super_main_books">
+            <div className="super_main_books">
                 <h1 className="white-text center-align" > <i className="fas fa-book"></i> CurriculumBooks </h1>
                 <div className={this.state.className}>
                         {this.state.books && <AllBooks books={this.state.books} newbook={this.handleNewBook} setSold={this.setSold} />}
@@ -185,7 +185,7 @@ function NewBookPrice(props){
 
     if (!hidden){
     return( 
-        <div classNameName="new-book-price">
+        <div className="new-book-price">
             <form className="s12" onSubmit={handleSubmitDB}>
                 <div className="row">
                     <div className="input-field col s12">
