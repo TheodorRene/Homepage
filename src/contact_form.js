@@ -18,7 +18,6 @@ function Contact_form(props){
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [text, setText] = useState("")
-    const [submit, setSubmit] = useState(false)
 
     const form_background = {
         background: "rgba(255, 255, 255)",
@@ -35,15 +34,9 @@ function Contact_form(props){
                 // no default
         }
     }
-    const submitted = () => {
-        return (
-            <h1> Melding sendt </h1>
-        )
-    }
         
     return (
         <div className="form" style={form_background}>
-            {submit && submitted()}
             <form name="contactform" className="s12" netlify>
                 <FormEntry 
                     id="name" 
