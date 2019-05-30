@@ -44,7 +44,7 @@ function Contact_form(props){
     return (
         <div className="form" style={form_background}>
             {submit && submitted()}
-            <form className="s12" netlify>
+            <form name="contactform" className="s12" netlify>
                 <FormEntry 
                     id="name" 
                     val={name}

@@ -4,7 +4,7 @@ function FormEntry(props){
         (
                 <div className="row">
                     <div className="input-field col s12">
-                        <input id={props.id} type="text" value={props.val} onChange={props.onChange} />
+                        <input name={props.id} id={props.id} type="text" value={props.val} onChange={props.onChange} />
                         <label htmlFor={props.id}>{props.text}</label>
                     </div>
                 </div>
