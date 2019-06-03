@@ -8,13 +8,12 @@ const checkAuth = (func) => {
         method: 'GET',
         credentials: 'include',
         redirect: 'follow',
-    }).then(res => res.json()).then(result => {
-        func(result.status)
     })
+        .then(res => res.json())
+        .then(result => func(result.status))
         .catch(error => console.error('Error',error))
 }
 function AdminLogin(props){
-
     const [status,setStatus] = useState(false)
 
     useEffect(() => {
@@ -42,7 +41,9 @@ const postData = (url, json, func) => {
         headers:{
             'Content-Type': 'application/json'
         }
-    }).then(response => {func(response.ok)})
+    })
+        .then(response => func(response.ok))
+        .catch(error => console.error('Error',error))
 }
 
 function AdminPage(props) {
@@ -52,6 +53,15 @@ function AdminPage(props) {
     const [link,setLink] = useState("")
     const [type,setType] = useState("")
     const [date,setDate] = useState("")
+
+    const resetStates = () =>{
+        setTitle("")
+        setImg_path("")
+        setDescription("")
+        setLink("")
+        setType("")
+        setDate("")
+    }
 
     const handleSubmit = (e) =>{
         e.preventDefault()
@@ -64,19 +74,14 @@ function AdminPage(props) {
             date,
 
         }, (arg) => {} )
-        setTitle("")
-        setImg_path("")
-        setDescription("")
-        setLink("")
-        setType("")
-        setDate("")
+        resetStates()
     }
     const logout = () => {
         fetch(`${backend}/logout`,{
             method: 'GET',
             credentials: 'include',
             redirect: 'follow',
-        }).then( () => props.toggleLogin(false))
+        }).then(props.toggleLogin(false))
     }
     const handleInputChange = (e) => {
         const id = e.target.id;
@@ -160,11 +165,7 @@ function LoginForm(props){
         },props.toggleLogin)
     }
 
-    const error = () =>{
-        return (
-            <h1 className="error"> Wrong credentials </h1>
-        )
-    }
+    const error = <h1 className="error"> Wrong credentials </h1>
     
     const handleInputChange = (e) => {
         e.preventDefault()
@@ -179,7 +180,7 @@ function LoginForm(props){
 
     return(
         <div className="loginform" style={form_background}>
-            {submit && error()}
+            {submit && error} 
             <form className="s12" onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="input-field col s12">

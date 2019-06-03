@@ -115,6 +115,7 @@ class Project extends Component {
         this.getMonth = this.getMonth.bind(this)
     }
 
+    //TODO migrate to utils
     //Should maybe be pure functions
     getYear = () => new Date(this.props.date).getFullYear()
     getMonth = () => this.monthName(new Date(this.props.date).getMonth())
