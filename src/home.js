@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { backend as backend_link } from './config'; 
+import "./css/index.css";
 //https://www.pexels.com/photo/photo-of-seawaves-2120101/
 
-
-const terminal = {
-    fontFamily:" 'IBM Plex Mono', monospace"
-}
 
 const main = {
     background: "rgba(192, 192, 192, 0.3)",
@@ -26,8 +23,8 @@ class Info extends Component {
     }
     render() {
         return (
-            <div className={main}>
-                <h1 className="center-align white-text" style={terminal}> <i className="fas fa-terminal"></i> /home/theodorc </h1>
+            <div className="main">
+                <h1 className="center-align white-text" > <i className="fas fa-terminal"></i> /home/theodorc </h1>
                 <p className="flow-text white-text">
                     {this.state.info && this.state.info[0].text}
                </p>
