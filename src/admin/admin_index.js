@@ -189,7 +189,7 @@ function LoginForm(props){
                 </div>
                 <div className="row">
                     <div className="input-field col s12">
-                        <input id="password" type="text" value={password} onChange={handleInputChange}/>
+                        <input id="password" type="password" value={password} onChange={handleInputChange}/>
                         <label htmlFor="username"> Password </label>
                     </div>
                 </div>
