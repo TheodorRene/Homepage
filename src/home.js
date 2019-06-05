@@ -40,7 +40,15 @@ function SuperHome(props){
     return (
         <div>
             {projects && info && <Home projects={projects} info={info} />}
-            { !projects && !info && <h1> Loading </h1>}
+            { !projects && !info && <Loading /> }
+        </div>
+    )
+}
+function Loading(props){
+
+    return (
+        <div>
+            <h1 className="loading">Loading site</h1>
         </div>
     )
 }
