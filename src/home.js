@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState, useEffect } from 'react'
 import { backend as backend_link } from './config'
 import './css/index.css'
 //https://www.pexels.com/photo/photo-of-seawaves-2120101/
@@ -8,18 +8,6 @@ const main = {
 }
 
 class Info extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            info: null,
-        }
-    }
-
-    componentDidMount() {
-        fetch(`${backend_link}/info`, { mode: 'cors', redirect: 'follow' })
-            .then(response => response.json())
-            .then(info => this.setState({ info }))
-    }
     render() {
         return (
             <div className="main">
@@ -28,32 +16,46 @@ class Info extends Component {
                     <i className="fas fa-terminal" /> /home/theodorc{' '}
                 </h1>
                 <p className="flow-text white-text">
-                    {this.state.info && this.state.info[0].text}
+                    {this.props.info[0].text}
                 </p>
             </div>
         )
     }
 }
+function SuperHome(props){
+    const [projects, setProjects] = useState(null)
+    const [info, setInfo] = useState(null)
+
+    useEffect(() => {
+        fetch(`${backend_link}/allprojects`)
+            .then(response => response.json())
+            .then(projects => {
+                setProjects(projects)
+            })
+        fetch(`${backend_link}/info`, { mode: 'cors', redirect: 'follow' })
+            .then(response => response.json())
+            .then(info2 => setInfo(info2))
+    }, [])
+
+    return (
+        <div>
+            {projects && info && <Home projects={projects} info={info} />}
+            { !projects && !info && <h1> Loading </h1>}
+        </div>
+    )
+}
 
 class Home extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            projects: null,
-        }
         this.getProjects = this.getProjects.bind(this)
         this.getStaticLink = this.getStaticLink.bind(this)
-    }
-    componentDidMount() {
-        fetch(`${backend_link}/allprojects`)
-            .then(response => response.json())
-            .then(projects => this.setState({ projects }))
     }
 
     getStaticLink = path => `${backend_link}/static/${path}`
 
     getProjects = typ => {
-        return this.state.projects
+        return this.props.projects
             .filter(project => project.type === typ)
             .map(project => {
                 return (
@@ -74,13 +76,10 @@ class Home extends Component {
             <div>
                 <div style={main} />
                 <div className="container">
-                    <Info />
+                    <Info info={this.props.info}/>
                     <div className="col s12 m10 offset-m1">
                         <div className="row">
-                            {this.state.projects && this.getProjects('jobb')}
-                            {!this.state.projects && (
-                                <h1> Backend fetch error </h1>
-                            )}
+                            {this.getProjects('jobb')}
                         </div>
                     </div>
                     <h1 className="center-align">
@@ -90,11 +89,7 @@ class Home extends Component {
                     </h1>
                     <div className="col s12 m10 offset-m1">
                         <div className="row">
-                            {this.state.projects &&
-                                this.getProjects('prosjekt')}
-                            {!this.state.projects && (
-                                <h1> Backend fetch error </h1>
-                            )}
+                            {this.getProjects('prosjekt')}
                         </div>
                     </div>
                     <h1 className="center-align">
@@ -104,11 +99,7 @@ class Home extends Component {
                     </h1>
                     <div className="col s12 m10 offset-m1">
                         <div className="row">
-                            {this.state.projects &&
-                                this.getProjects('engasjement')}
-                            {!this.state.projects && (
-                                <h1> Backend fetch error </h1>
-                            )}
+                            {       this.getProjects('engasjement')}
                         </div>
                     </div>
                     <h1 className="center-align">
@@ -118,11 +109,7 @@ class Home extends Component {
                     </h1>
                     <div className="col s12 m10 offset-m1">
                         <div className="row">
-                            {this.state.projects &&
-                                this.getProjects('utdanning')}
-                            {!this.state.projects && (
-                                <h1> Backend fetch error </h1>
-                            )}
+                            {this.getProjects('utdanning')}
                         </div>
                     </div>
                 </div>
@@ -205,4 +192,4 @@ class Project extends Component {
     }
 }
 
-export default Home
+export default SuperHome
