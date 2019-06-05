@@ -48,7 +48,8 @@ function Loading(props){
 
     return (
         <div>
-            <h1 className="loading">Loading site</h1>
+            <h1 className="loading">Laster siden        <i class="fas fa-sync fa-spin"></i></h1>
+
         </div>
     )
 }
