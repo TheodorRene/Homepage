@@ -1,11 +1,26 @@
 .container {
     display:flex;
-    align-items: center;
+    justify-content: space-around;
+    flex-flow: row wrap;
 }
 
 .cardTest {
+    display: flex;
+    flex-direction: column; 
     outline-style: solid;
     outline-color: red;
-    width: 300px;
-    height: 300px;
+    margin-top: 100px;
+    width: 40vh;
+    height:40vh;
+    justify-content: space-around;
 }
+
+.titleTest {
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
