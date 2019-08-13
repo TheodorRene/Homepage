@@ -1,0 +1,11 @@
+.container {
+    display:flex;
+    align-items: center;
+}
+
+.cardTest {
+    outline-style: solid;
+    outline-color: red;
+    width: 300px;
+    height: 300px;
+}

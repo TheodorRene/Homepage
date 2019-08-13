@@ -9,6 +9,7 @@ import SuperHome from './home'
 import CurriculumBooks from './curr_books/books'
 import AdminLogin from './admin/admin_index'
 import Contact from './contact_form'
+import TestCards from './testing'
 
 ReactDOM.render(
     <Router>
@@ -18,6 +19,7 @@ ReactDOM.render(
             <Route exact path="/" component={SuperHome} /> <Route exact path="/curr" component={CurriculumBooks} />
             <Route path="/admin" component={AdminLogin} />
             <Route path="/kontakt" component={Contact} />
+            <Route path="/test" component={TestCards} />
         </Switch>
     </Router>,
     document.getElementById('root')
