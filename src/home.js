@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from 'react'
 import { backend as backend_link } from './config'
 import './css/index.css'
+import Card from './testing';
 //https://www.pexels.com/photo/photo-of-seawaves-2120101/
 
 const main = {
@@ -68,7 +69,7 @@ class Home extends Component {
             .filter(project => project.type === typ)
             .map(project => {
                 return (
-                    <Project
+                    <Card
                         key={project.projectid}
                         title={project.title}
                         text={project.description}
@@ -86,41 +87,25 @@ class Home extends Component {
                 <div style={main} />
                 <div className="container">
                     <Info info={this.props.info}/>
-                    <div className="col s12 m10 offset-m1">
-                        <div className="row">
                             {this.getProjects('jobb')}
-                        </div>
-                    </div>
-                    <h1 className="center-align">
+                    <h1>
                         {' '}
                         <i className="fas fa-terminal" />{' '}
                         /home/theodorc/prosjekter
                     </h1>
-                    <div className="col s12 m10 offset-m1">
-                        <div className="row">
                             {this.getProjects('prosjekt')}
-                        </div>
-                    </div>
-                    <h1 className="center-align">
+                    <h1>
                         {' '}
                         <i className="fas fa-terminal" />{' '}
                         /home/theodorc/engasjement
                     </h1>
-                    <div className="col s12 m10 offset-m1">
-                        <div className="row">
                             {       this.getProjects('engasjement')}
-                        </div>
-                    </div>
-                    <h1 className="center-align">
+                    <h1>
                         {' '}
                         <i className="fas fa-terminal" />{' '}
                         /home/theodorc/utdanning
                     </h1>
-                    <div className="col s12 m10 offset-m1">
-                        <div className="row">
                             {this.getProjects('utdanning')}
-                        </div>
-                    </div>
                 </div>
             </div>
         )

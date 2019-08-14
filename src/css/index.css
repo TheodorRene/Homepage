@@ -8,6 +8,13 @@
 .main{
     background: rgba(192, 192, 192, 0.3);
 }
+
+.containerTo {
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
 h1{
     font-family:IBM Plex Mono, monospace;
 }

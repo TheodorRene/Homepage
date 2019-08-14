@@ -1,26 +1,52 @@
 .container {
     display:flex;
-    justify-content: space-around;
-    flex-flow: row wrap;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .cardTest {
-    display: flex;
-    flex-direction: column; 
-    outline-style: solid;
-    outline-color: red;
-    margin-top: 100px;
-    width: 40vh;
-    height:40vh;
-    justify-content: space-around;
+    flex: 1;
+    flex-basis: 20em;
+    border-radius: 5px;
+    background-color: white;
+    margin: 25px 20px 20px;
+    min-width: 100px;
+    box-shadow: 5px 10px 10px grey;
+}
+.cardTest:hover{
+    opacity: 0.85;
 }
 
 .titleTest {
     text-align: center;
+    font-family: IBM Plex Mono, monospace;
+    font-size: x-large;
+
+}
+
+.textTest {
+   max-height: 10em;
+   overflow: auto;
+   font-family: IBM Plex Mono, monospace;
+
+}
+.imageContainer {
+    display: flex;
+    flex: 1;
+    justify-content: center;
 }
 
 img {
-    max-width: 100%;
+    width:300px;
     height: auto;
 }
 
+@media (max-width: 400px) {
+
+  .container {
+
+    display: block;
+
+  }
+
+}
