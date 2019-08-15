@@ -85,7 +85,7 @@ class Home extends Component {
         return (
             <div>
                 <div style={main} />
-                <div className="container">
+                <div className="containerTo">
                     <Info info={this.props.info}/>
                             {this.getProjects('jobb')}
                     <h1>
