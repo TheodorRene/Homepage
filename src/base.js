@@ -23,10 +23,20 @@ class Navbar extends Component {
                             </NavLink>
                         </li>
                     </ul>
+                    <ul className="left">
+                        <li>
+                            <a href='https://www.linkedin.com/in/theodorcarlsen/'> LinkedIn </a>
+                        </li>
+                    </ul>
                 </div>
             </nav>
         )
     }
+}
+
+const logo = {
+    maxWidth: "100%",
+    mexHeight: "100%"
 }
 
 export default Navbar

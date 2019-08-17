@@ -50,7 +50,6 @@ function Loading(props){
     return (
         <div>
             <h1 className="loading">Laster siden        <i class="fas fa-sync fa-spin"></i></h1>
-
         </div>
     )
 }
@@ -104,7 +103,13 @@ class Home extends Component {
         )
     }
 }
-
+const LinkedIn = () => {
+    return (
+        <div className="linkedin">
+            <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="no_NO" data-type="vertical" data-theme="dark" data-vanity="theodor-rené-c-6804b589"><a class="LI-simple-link" href='https://no.linkedin.com/in/theodor-ren%C3%A9-c-6804b589?trk=profile-badge'>Theodor René C.</a></div>
+        </div>
+    )
+}
 const Title = (props) => <h1> <i className="fas fa-terminal" />{`home/theodorc/${props.title}`}</h1>
 
 class Project extends Component {

@@ -47,11 +47,14 @@ h1{
     display: flex;
     justify-content: center;
 }
-.loading-git{
-}
 
 h1.error {
     color: red;
     font-size: 12px;
     text-align: center;
+}
+
+.linkedin{
+    margin: auto;
+    width: 15%;
 }
