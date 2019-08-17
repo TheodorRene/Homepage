@@ -7,6 +7,9 @@
 }
 .main{
     background: rgba(192, 192, 192, 0.3);
+    margin:auto;
+    width: 70%;
+    text-align: center;
 }
 
 .containerTo {
@@ -16,9 +19,29 @@
     width: 70%;
     margin: auto;
 }
+ @media (max-width: 400px) {
+   .containerTo {
+       display: block;
+       width: 100%;
+   }
+   .super_homepage_container{
+       display: block;
+       width: 100%;
+   }
+   .main{
+       width: 90%;
+   }
+ }
+
+.super_homepage_container {
+    display:flex;
+    flex-direction: column;
+    margin: auto;
+}
 
 h1{
     font-family:IBM Plex Mono, monospace;
+    text-align: center;
 }
 .loading{
     display: flex;

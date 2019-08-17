@@ -1,8 +1,3 @@
-.container {
-    display:flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
 
 .cardTest {
     flex: 1;
@@ -21,14 +16,36 @@
     text-align: center;
     font-family: IBM Plex Mono, monospace;
     font-size: x-large;
-
+    margin: 20px 0px 0px 0px;
+}
+@media (max-width: 400px) {
+    .titleTest {
+        font-size: medium
+    }
+}
+.subtitle {
+    text-align: center;
+    font-family: IBM Plex Mono, monospace;
+    font-size: medium;
+    font-color: grey;
+    margin: 0;
+}
+hr {
+    border:0;
+    height: 1px; 
+    background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); 
 }
 
 .textTest {
    max-height: 10em;
+   #text-align: center;
    overflow: auto;
    font-family: IBM Plex Mono, monospace;
-
+   width: 80%;
+   margin: auto;
 }
 .imageContainer {
     display: flex;
@@ -39,14 +56,4 @@
 img {
     width:300px;
     height: auto;
-}
-
-@media (max-width: 400px) {
-
-  .container {
-
-    display: block;
-
-  }
-
 }

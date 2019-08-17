@@ -80,37 +80,32 @@ class Home extends Component {
                 )
             })
     }
+    getProjectsWrapper = typ => {
+        return (
+            <div className="containerTo">
+                {this.getProjects(typ)}
+            </div>
+        )
+    }
+
     //maybe make component for project types
     render() {
         return (
-            <div>
-                <div style={main} />
-                <div className="containerTo">
+            <div className="super_homepage_container">
                     <Info info={this.props.info}/>
-                            {this.getProjects('jobb')}
-                    <h1>
-                        {' '}
-                        <i className="fas fa-terminal" />{' '}
-                        /home/theodorc/prosjekter
-                    </h1>
-                            {this.getProjects('prosjekt')}
-                    <h1>
-                        {' '}
-                        <i className="fas fa-terminal" />{' '}
-                        /home/theodorc/engasjement
-                    </h1>
-                            {       this.getProjects('engasjement')}
-                    <h1>
-                        {' '}
-                        <i className="fas fa-terminal" />{' '}
-                        /home/theodorc/utdanning
-                    </h1>
-                            {this.getProjects('utdanning')}
-                </div>
+                    {this.getProjectsWrapper('jobb')}
+                    <Title title="prosjekter" />
+                    {this.getProjectsWrapper('prosjekt')}
+                    <Title title="engasjement" />
+                    {this.getProjectsWrapper('engasjement')}
+                    <Title title="utdanning" />
+                    {this.getProjectsWrapper('utdanning')}
             </div>
         )
     }
 }
+
+const Title = (props) => <h1> <i className="fas fa-terminal" />{`home/theodorc/${props.title}`}</h1>
 
 class Project extends Component {
     constructor(props) {

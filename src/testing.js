@@ -1,24 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './testing.css';
 
 
-function TestCards(props){
-    return (
-        <div className="container">
-            <Card txt={"example text"}image={"https://picsum.photos/200/300"}/>
-            <Card image={"https://picsum.photos/200/300"}/>
-            <Card image = {"https://image.shutterstock.com/z/stock-photo--micro-peacock-feather-hd-image-best-texture-background-colourful-indian-peacock-feather-1127238584.jpg"}/>
-            <Card image={"https://picsum.photos/200/300"}/>
-            <Card image={"https://picsum.photos/200/300"}/>
-            <Card image={"https://picsum.photos/200/300"}/>
-            <Card image={"https://picsum.photos/200/300"}/>
-            <Card image={"https://picsum.photos/200/300"}/>
-            <Card image={"https://picsum.photos/200/300"}/>
-            <Card image={"https://picsum.photos/200/300"}/>
-            <Card image={"https://picsum.photos/200/300"}/>
-        </div>
-    )
-}
 export default function Card(props){
     const getYear = () => new Date(props.date).getFullYear()
     const getMonth = () => monthName(new Date(props.date).getMonth())
@@ -55,10 +38,13 @@ export default function Card(props){
     return (
         <div className="cardTest" onClick={ () => window.location.href = props.link } >
             <h3 className= "titleTest"> {props.title} </h3>
+            <h3 className= "subtitle"> {getMonth()} {getYear()} </h3>
+            <hr/>
             <div className="imageContainer">
                 <img alt="random" src={props.img}/>
             </div>
-            <p className="textTest"> {props.text}{getMonth()}{getYear()}</p>
+            <hr/>
+            <p className="textTest"> {props.text} </p>
         </div>
     )
 }
