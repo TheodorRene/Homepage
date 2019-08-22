@@ -55,5 +55,6 @@ hr {
 
 img {
     width:300px;
+    align-self: center;
     height: auto;
 }
