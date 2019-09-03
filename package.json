@@ -25,12 +25,12 @@
     "not op_mini all"
   ],
   "devDependencies": {
-      "react-test-renderer": "^16.8.6"
+    "react-test-renderer": "^16.8.6"
   },
-  "prettier":{
-      "trailingComma": "es5",
-      "singleQuote": true,
-      "semi": false,
-      "tabWidth":4
+  "prettier": {
+    "trailingComma": "es5",
+    "singleQuote": true,
+    "semi": false,
+    "tabWidth": 4
   }
 }
