@@ -26,13 +26,14 @@ class Info extends Component {
 function SuperHome(props){
     const [projects, setProjects] = useState(null)
     const [info, setInfo] = useState(null)
+    const [isUnderMaintenance, setIsUnderMaintenance] = useState(false)
 
     useEffect(() => {
         fetch(`${backend_link}/allprojects`)
             .then(response => response.json())
             .then(projects => {
                 setProjects(projects)
-            })
+            }).catch(setIsUnderMaintenance(true))
         fetch(`${backend_link}/info`, { mode: 'cors', redirect: 'follow' })
             .then(response => response.json())
             .then(info2 => setInfo(info2))
@@ -41,15 +42,22 @@ function SuperHome(props){
     return (
         <div>
             {projects && info && <Home projects={projects} info={info} />}
-            { !projects && !info && <Loading /> }
+            { !projects && !info && !isUnderMaintenance && <Loading /> }
+            { isUnderMaintenance && <UnderMaintenance />}
         </div>
     )
 }
 function Loading(props){
-
     return (
         <div>
             <h1 className="loading">Laster siden        <i class="fas fa-sync fa-spin"></i></h1>
+        </div>
+    )
+}
+function UnderMaintenance(props){
+    return (
+        <div>
+            <h1 className="loading">Siden er under vedlikehold   <i class="fas fa-sync fa-spin"></i></h1>
         </div>
     )
 }
