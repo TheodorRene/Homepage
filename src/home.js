@@ -57,7 +57,7 @@ function Loading(props){
 function UnderMaintenance(props){
     return (
         <div>
-            <h1 className="loading">Siden er under vedlikehold   <i class="fas fa-sync fa-spin"></i></h1>
+            <h1 className="loading">Siden er under vedlikehold </h1>
         </div>
     )
 }

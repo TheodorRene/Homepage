@@ -28,6 +28,20 @@ function AdminLogin(props) {
     )
 }
 
+function AdminPage(props){
+    return (
+        <div className="logged_in_admin">
+            <InsertProject />
+            <EditProject />
+        </div>
+    )
+}
+function EditProject(props){
+    return (
+
+    )
+}
+
 const form_background = {
     background: 'rgba(255, 255, 255)',
 }
@@ -46,7 +60,7 @@ const postData = (url, json, func) => {
         .catch(error => console.error('Error', error))
 }
 
-function AdminPage(props) {
+function InsertProject(props) {
     const [title, setTitle] = useState('')
     const [img_path, setImg_path] = useState('')
     const [description, setDescription] = useState('')
