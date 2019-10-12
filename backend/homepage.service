@@ -1,0 +1,11 @@
+[Unit]
+Description= Homepage for <User>
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/node <Path>/Homepage/backend/app.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

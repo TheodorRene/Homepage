@@ -3,12 +3,15 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
+var morgan = require('morgan')
 
 const fs = require('fs')
 const https = require('https')
 
 const db_currbooks = require('./db_func')
 const db_homepage = require('./homepage_db_func')
+var path = require('path')
+var rfs = require('rotating-file-stream')
 
 const uuid = require('uuid/v4')
 const session = require('express-session')
@@ -23,6 +26,11 @@ const arg1 = process.argv[2]
 const isDev = () => arg1==='dev'
 const port = isDev() ? 8000 : 80
 const cors_origin = isDev() ? 'http://localhost:3000' : 'https://theodorc.no' 
+// Logging
+var accessLogStream = rfs('homepage_access.log', {
+  interval: '1d', // rotate daily
+    path: path.join('/var', 'log')
+})
 
 //end config 
 app.use(cors({credentials: true,methods:"GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS",origin: cors_origin}))
@@ -31,9 +39,9 @@ app.use(
   bodyParser.urlencoded({
     extended: true, })
 )
+app.use(morgan('combined', { stream: accessLogStream}))
 app.use(session({
   genid: (req) => {
-    console.log('Inside the session middleware')
     return uuid() // use UUIDs for session IDs
   },
   store: new FileStore(),
@@ -44,6 +52,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 passport.use(new LocalStrategy(
     ( username, password, done) => {
@@ -102,8 +111,8 @@ app.get('/logout', function(req, res){
 
 
 //Host static files
-app.use('/static', express.static('public'))
-app.use('/', express.static('acme',{ dotfiles:'allow' }))
+app.use('/static', express.static('/home/theodorc/dev/Homepage/backend/public'))
+app.use('/', express.static('/home/theodorc/dev/Homepage/acme',{ dotfiles:'allow' }))
 
 
 //currbooks
@@ -128,9 +137,6 @@ app.get('/info', (req, res) => db_homepage.getInfo(req,res))
  
 // todo make function
 app.listen(port, () => {
-    console.log(`
-    \n\n\n\n\n\n\n\n\n\n\n\n
-    currbooks📚 backend running on port ${port}🔥`)
 })
 
 if(arg1!=='dev'){
