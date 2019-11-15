@@ -2,6 +2,7 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const AWS = require('aws-sdk');
 const cors = require('cors')
 var morgan = require('morgan')
 
@@ -19,6 +20,7 @@ const FileStore = require('session-file-store')(session);
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const local = require('./config')
+const aws_conf = require('./aws_secrets')
 //const bcrypt = require('bcrypt-nodejs'); // use this for hashed passwords
 const arg1 = process.argv[2]
 
@@ -134,6 +136,29 @@ app.post('/newproject', (req, res) => {
     }
 })
 app.get('/info', (req, res) => db_homepage.getInfo(req,res))
+
+app.get('/articles', (req, res, next) => {
+    AWS.config.update({region:'us-east-2'});
+    const docClient = new AWS.DynamoDB.DocumentClient();
+    const params = {
+        TableName: aws_conf.aws_table_name
+    }
+    docClient.scan(params, (err,data) => {
+        if (err){
+            res.send({
+                success: false,
+                message: err
+            })
+        } else {
+            const { Items } = data;
+            res.send({
+                success: true,
+                message: 'Here are article',
+                articles: Items
+            })
+        }
+    })
+})
  
 // todo make function
 app.listen(port, () => {
