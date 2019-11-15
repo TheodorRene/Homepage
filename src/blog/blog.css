@@ -1,0 +1,51 @@
+.blog{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.articles{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.article{
+    flex: 1;
+    flex-basis: 20em;
+    border-radius: 5px;
+    background-color: white;
+    margin: 25px 20px 20px;
+    min-width: 60%;
+    max-width: 60%;
+    box-shadow: 5px 10px 10px grey;
+}
+.article p{
+    font-family:IBM Plex Mono, monospace;
+    margin:0%;
+    text-align: left;
+    padding: 20px;
+}
+.article ul{
+    font-family:IBM Plex Mono, monospace;
+    margin:0%;
+    text-align: center;
+}
+.article code{
+    font-family:IBM Plex Mono, monospace;
+    margin:0%;
+    text-align: center;
+}
+.article h2{
+    font-family:IBM Plex Mono, monospace;
+    margin:0%;
+    text-align: center;
+    font-size: 3vw;
+    padding: 20px;
+}
+.article h3{
+    font-family:IBM Plex Mono, monospace;
+    margin:0%;
+    text-align: center;
+    font-size: 2vw;
+    padding: 10px;
+}
