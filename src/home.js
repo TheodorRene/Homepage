@@ -43,7 +43,7 @@ function SuperHome(props){
         <div>
             {projects && info && <Home projects={projects} info={info} />}
             { !projects && !info && !isUnderMaintenance && <Loading /> }
-            { isUnderMaintenance && <UnderMaintenance />}
+            { !projects && !info && isUnderMaintenance && <UnderMaintenance />}
         </div>
     )
 }
