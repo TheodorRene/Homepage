@@ -112,7 +112,7 @@ app.get('/logout', function(req, res){
 
 //Host static files
 app.use('/static', express.static('/home/theodorc/dev/Homepage/backend/public'))
-app.use('/', express.static('/home/theodorc/dev/Homepage/acme',{ dotfiles:'allow' }))
+app.use('/', express.static('/home/theodorc/dev/Homepage/backend/acme',{ dotfiles:'allow' }))
 
 
 //currbooks
