@@ -11,7 +11,6 @@
 }
 .article{
     flex: 1;
-    flex-basis: 20em;
     border-radius: 5px;
     background-color: white;
     margin: 25px 20px 20px;
@@ -24,6 +23,11 @@
     margin:0%;
     text-align: left;
     padding: 20px;
+}
+.article h1{
+    font-family:IBM Plex Mono, monospace;
+    text-align: center;
+    font-size: 3vw;
 }
 .article ul{
     font-family:IBM Plex Mono, monospace;
@@ -49,3 +53,7 @@
     font-size: 2vw;
     padding: 10px;
 }
+ .article button{
+     margin: 25px 20px 20px;
+     float: right;
+ }

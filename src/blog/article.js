@@ -1,15 +1,22 @@
 import React, { useState } from 'react'
-import { Remarkable } from 'remarkable';
 import ReactMarkdown from 'react-markdown';
 
 import './blog.css'
 
 function Article(props){
-    const md = new Remarkable();
+    const [isOpen, setIsOpen] = useState(false)
+    const [btnText, setBtnText] = useState("Les")
+    
+
+    const handleButton = () => {
+        setIsOpen(!isOpen)
+        setBtnText(isOpen ? "Les" : "Lukk" )
+    }
     return (
         <div className="article">
+            <button className="waves-effect waves-light btn" onClick={handleButton}> {btnText} </button>
             <h1> {props.article.title} </h1>
-                <ReactMarkdown source={props.article.text}/>
+                { isOpen && <ReactMarkdown source={props.article.text}/>}
         </div>
     )
 }
