@@ -41,7 +41,9 @@ app.use(
   bodyParser.urlencoded({
     extended: true, })
 )
-app.use(morgan('combined', { stream: accessLogStream}))
+if(!isDev()){
+    app.use(morgan('combined', { stream: accessLogStream}))
+}
 app.use(session({
   genid: (req) => {
     return uuid() // use UUIDs for session IDs
