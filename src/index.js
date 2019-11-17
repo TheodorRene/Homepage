@@ -10,6 +10,7 @@ import CurriculumBooks from './curr_books/books'
 import AdminLogin from './admin/admin_index'
 import Contact from './contact_form'
 import TestCards from './testing'
+import Blog from './blog/blog'
 
 ReactDOM.render(
     <Router>
@@ -20,6 +21,7 @@ ReactDOM.render(
             <Route path="/admin" component={AdminLogin} />
             <Route path="/kontakt" component={Contact} />
             <Route path="/test" component={TestCards} />
+            <Route path="/blog" component={Blog}/>
         </Switch>
     </Router>,
     document.getElementById('root')

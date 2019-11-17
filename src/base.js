@@ -22,6 +22,11 @@ class Navbar extends Component {
                                 admin
                             </NavLink>
                         </li>
+                        <li>
+                            <NavLink to={'/blog'} activeStyle={active}>
+                                blog
+                            </NavLink>
+                        </li>
                     </ul>
                     <ul className="left">
                         <li>
