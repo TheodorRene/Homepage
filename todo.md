@@ -1,4 +1,5 @@
 # TODO
+* Move webserving to nginx instead of express
 * Migrate backend to another git repo
 * Make tests
 * General visual changes
@@ -6,7 +7,6 @@
   * Better cropping of pictures
   * Rewrite navbar
 * Set up logging and notifications from backend server
-* Add cronjob for renewing certificates
 * Move style to stylesheets
 * Make general component for making forms
 * Alter project tabel; add end date and link text
@@ -17,3 +17,4 @@
 * Fix admin_index auth (currently showing for everyone) ✓
 * Refactor unnecessary code (move currbooks and pb vs sesam) ✓
 * Add dev config and prod config ✓
+* Add cronjob for renewing certificates ✓
