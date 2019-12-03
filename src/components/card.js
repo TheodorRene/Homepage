@@ -1,5 +1,5 @@
 import React from 'react';
-import './testing.css';
+import './css/card.css';
 
 
 export default function Card(props){
@@ -37,11 +37,11 @@ export default function Card(props){
     }
     return (
         <div className="cardTest" onClick={ () => window.location.href = props.link } >
-            <h3 className= "titleTest"> {props.title} </h3>
-            <h3 className= "subtitle"> {getMonth()} {getYear()} </h3>
+            <h3 className="titleTest"> {props.title} </h3>
+            <h3 className="subtitle"> {getMonth()} {getYear()} </h3>
             <hr/>
             <div className="imageContainer">
-                <img alt="random" src={props.img}/>
+                <img alt="image related to project" src={props.img}/>
             </div>
             <hr/>
             <p className="textTest"> {props.text} </p>
