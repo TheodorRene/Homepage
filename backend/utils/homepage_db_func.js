@@ -1,4 +1,4 @@
-const p = require('./config')
+const p = require('../config')
 
 const getAllProjects = (req, res) => {
     p.hppool.query('SELECT * FROM project ORDER BY date DESC;', (err, results) => {

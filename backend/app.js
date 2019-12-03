@@ -9,8 +9,8 @@ var morgan = require('morgan')
 const fs = require('fs')
 const https = require('https')
 
-const db_currbooks = require('./db_func')
-const db_homepage = require('./homepage_db_func')
+const db_currbooks = require('./utils/db_func')
+const db_homepage = require('./utils/homepage_db_func')
 var path = require('path')
 var rfs = require('rotating-file-stream')
 
@@ -139,6 +139,7 @@ app.post('/newproject', (req, res) => {
 })
 app.get('/info', (req, res) => db_homepage.getInfo(req,res))
 
+// get articles from aws
 app.get('/articles', (req, res, next) => {
     AWS.config.update({region:'us-east-2'});
     const docClient = new AWS.DynamoDB.DocumentClient();
@@ -166,6 +167,8 @@ app.get('/articles', (req, res, next) => {
 app.listen(port, () => {
 })
 
+// sertificate handling
+// TODO move webserver to nginx
 if(arg1!=='dev'){
     https.createServer({
         key: fs.readFileSync('/etc/letsencrypt/live/api.theodorc.no/privkey.pem'),

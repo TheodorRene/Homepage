@@ -1,4 +1,4 @@
-const p = require('./config')
+const p = require('../config')
 
 // retrieve all books
 const getAllBooks = (req, res) => {
