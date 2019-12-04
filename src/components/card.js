@@ -41,7 +41,7 @@ export default function Card(props){
             <h3 className="subtitle"> {getMonth()} {getYear()} </h3>
             <hr/>
             <div className="imageContainer">
-                <img alt="image related to project" src={props.img}/>
+                <img alt="related to project" src={props.img}/>
             </div>
             <hr/>
             <p className="textTest"> {props.text} </p>

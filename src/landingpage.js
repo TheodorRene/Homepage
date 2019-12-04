@@ -5,9 +5,6 @@ import Card from './components/card';
 import Loading from './components/loading';
 import UnderMaintenance from './components/undermaintenance'
 
-const main = {
-    background: 'rgba(192, 192, 192, 0.3)',
-}
 
 class Info extends Component {
     render() {
