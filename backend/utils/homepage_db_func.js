@@ -5,7 +5,7 @@ const getAllProjects = (req, res) => {
         if(err){
             throw err
         }
-        res.status(200).json(results.rows[0])
+        res.status(200).json(results.rows)
     })
 }
 
@@ -25,7 +25,7 @@ const getInfo = (req, res) => {
     p.hppool.query('SELECT text FROM info LIMIT 1;', (err, results) => {
         if(err){
             throw err}
-        res.status(200).json(results.rows)
+        res.status(200).json(results.rows[0])
     })
 }
 
