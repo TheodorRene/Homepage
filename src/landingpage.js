@@ -14,7 +14,7 @@ class Info extends Component {
                     <i className="fas fa-terminal" /> /home/theodorc
                 </h1>
                 <p className="flow-text white-text">
-                    {this.props.info[0].text}
+                    {this.props.info.text}
                 </p>
             </div>
         )
