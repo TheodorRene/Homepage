@@ -27,7 +27,8 @@ const arg1 = process.argv[2]
 //Config
 const isDev = () => arg1==='dev'
 const port = isDev() ? 8000 : 80
-const cors_origin = isDev() ? 'http://localhost:3000' : 'https://theodorc.no' 
+//const cors_origin = isDev() ? 'http://localhost:3000' : 'https://theodorc.no' 
+const cors_origin = '*'
 // Logging
 var accessLogStream = rfs('homepage_access.log', {
   interval: '1d', // rotate daily
